@@ -7,22 +7,28 @@ allprojects {
 
 ext {
   //Android
-  androidBuildToolsVersion = "27.0.2"
+  androidBuildToolsVersion = '26.0.2'
   androidMinSdkVersion = 15
-  androidTargetSdkVersion = 27
-  androidCompileSdkVersion = 27
+  androidTargetSdkVersion = 26
+  androidCompileSdkVersion = 26
+
+  // Android
+  androidSupportVersion = '23.2.1'
+  androidDesignLibraryVersion = '25.3.1'
+  androidConstraintLayoutVersion = '1.0.2'
+  androidAnnotationsVersion = '21.0.3'
+  androidRecyclerViewVersion = '21.0.3'
 
   //Libraries
   daggerVersion = '2.8'
   butterKnifeVersion = '8.8.1'
-  recyclerViewVersion = '21.0.3'
   rxJavaVersion = '2.0.2'
   rxAndroidVersion = '2.0.1'
   javaxAnnotationVersion = '1.0'
   javaxInjectVersion = '1'
   gsonVersion = '2.3'
   okHttpVersion = '2.5.0'
-  androidAnnotationsVersion = '27.0.2'
+
 
   //Testing
   robolectricVersion = '3.1.1'
@@ -34,13 +40,16 @@ ext {
   testingSupportLibVersion = '0.1'
 
   //Development
-  leakCanaryVersion = '1.3.1'
+  leakCanaryVersion = '1.5.1'
 
-  presentationDependencies = [daggerCompiler     : "com.google.dagger:dagger-compiler:${daggerVersion}",
+  presentationDependencies = [appCompatV7        : "com.android.support:appcompat-v7:${androidSupportVersion}",
+                              designLibrary      : "com.android.support:design:${androidDesignLibraryVersion}",
+                              constraintLayout   : "com.android.support.constraint:constraint-layout:${androidConstraintLayoutVersion}",
+                              recyclerView       : "com.android.support:recyclerview-v7:${androidRecyclerViewVersion}",
+                              daggerCompiler     : "com.google.dagger:dagger-compiler:${daggerVersion}",
                               dagger             : "com.google.dagger:dagger:${daggerVersion}",
                               butterKnife        : "com.jakewharton:butterknife:${butterKnifeVersion}",
                               butterKnifeCompiler: "com.jakewharton:butterknife-compiler:${butterKnifeVersion}",
-                              recyclerView       : "com.android.support:recyclerview-v7:${recyclerViewVersion}",
                               rxJava             : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
                               rxAndroid          : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
                               javaxAnnotation    : "javax.annotation:jsr250-api:${javaxAnnotationVersion}"]
@@ -74,9 +83,8 @@ ext {
                           mockito    : "org.mockito:mockito-core:${mockitoVersion}",
                           robolectric: "org.robolectric:robolectric:${robolectricVersion}",]
 
-  developmentDependencies =
-      [leakCanary: "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}",]
+  utilsDependencies = [androidAnnotations: "com.android.support:support-annotations:${androidAnnotationsVersion}",]
 
-  utilsDependencies =
-      [androidAnnotations: "com.android.support:support-annotations:${androidAnnotationsVersion}",]
+  developmentDependencies = [leakCanary    : "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}",
+                             leakCanaryNoOp: "com.squareup.leakcanary:leakcanary-android-no-op:${leakCanaryVersion}"]
 }

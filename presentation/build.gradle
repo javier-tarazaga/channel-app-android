@@ -17,6 +17,11 @@ android {
     testApplicationId globalConfiguration.getAt("testApplicationId")
   }
 
+  dexOptions {
+    // Skip pre-dexing when running on Circle CI or when disabled via -Dpre-dex=false
+    preDexLibraries = globalConfiguration.getAt("isPreDexEnabled") && !globalConfiguration.getAt("isCiEnvironment")
+  }
+
   compileOptions {
     sourceCompatibility JavaVersion.VERSION_1_7
     targetCompatibility JavaVersion.VERSION_1_7
@@ -51,6 +56,11 @@ android {
 
   buildTypes {
     debug {
+      applicationIdSuffix '.DEBUG'
+      signingConfig signingConfigs.debug
+    }
+
+    release {
       signingConfig signingConfigs.debug
     }
   }
@@ -65,6 +75,11 @@ dependencies {
   implementation project(':data')
   implementation project(':utils')
 
+  implementation (presentationDependencies.appCompatV7) {
+    exclude module: 'support-v4'
+  }
+  implementation presentationDependencies.designLibrary
+  implementation presentationDependencies.constraintLayout
   annotationProcessor presentationDependencies.daggerCompiler
   implementation presentationDependencies.dagger
   implementation presentationDependencies.butterKnife
@@ -81,5 +96,7 @@ dependencies {
   androidTestImplementation presentationTestDependencies.testingSupportLib
 
   //Development
-  implementation developmentDependencies.leakCanary
+  debugImplementation developmentDependencies.leakCanary
+  releaseImplementation developmentDependencies.leakCanaryNoOp
+  testImplementation developmentDependencies.leakCanaryNoOp
 }
