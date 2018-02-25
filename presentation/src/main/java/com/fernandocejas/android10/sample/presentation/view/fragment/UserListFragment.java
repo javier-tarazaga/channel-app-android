@@ -14,9 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 import com.fernandocejas.android10.sample.presentation.R;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.UserComponent;
 import com.fernandocejas.android10.sample.presentation.model.UserModel;
@@ -42,12 +43,13 @@ public class UserListFragment extends BaseFragment implements UserListView {
   @Inject UserListPresenter userListPresenter;
   @Inject UsersAdapter usersAdapter;
 
-  @Bind(R.id.rv_users) RecyclerView rv_users;
-  @Bind(R.id.rl_progress) RelativeLayout rl_progress;
-  @Bind(R.id.rl_retry) RelativeLayout rl_retry;
-  @Bind(R.id.bt_retry) Button bt_retry;
+  @BindView(R.id.rv_users) RecyclerView rv_users;
+  @BindView(R.id.rl_progress) RelativeLayout rl_progress;
+  @BindView(R.id.rl_retry) RelativeLayout rl_retry;
+  @BindView(R.id.bt_retry) Button bt_retry;
 
   private UserListListener userListListener;
+  private Unbinder butterKnifeUnBinder;
 
   public UserListFragment() {
     setRetainInstance(true);
@@ -68,7 +70,7 @@ public class UserListFragment extends BaseFragment implements UserListView {
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     final View fragmentView = inflater.inflate(R.layout.fragment_user_list, container, false);
-    ButterKnife.bind(this, fragmentView);
+    butterKnifeUnBinder = ButterKnife.bind(this, fragmentView);
     setupRecyclerView();
     return fragmentView;
   }
@@ -94,7 +96,7 @@ public class UserListFragment extends BaseFragment implements UserListView {
   @Override public void onDestroyView() {
     super.onDestroyView();
     rv_users.setAdapter(null);
-    ButterKnife.unbind(this);
+    butterKnifeUnBinder.unbind();
   }
 
   @Override public void onDestroy() {
