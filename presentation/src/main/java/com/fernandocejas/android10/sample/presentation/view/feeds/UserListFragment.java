@@ -48,7 +48,7 @@ public class UserListFragment extends BaseFragment implements UserListView {
   @BindView(R.id.bt_retry) Button bt_retry;
 
   private UserListListener userListListener;
-  private Unbinder butterKnifeUnBinder;
+  private Unbinder viewUnbinder;
 
   public UserListFragment() {
     setRetainInstance(true);
@@ -69,7 +69,7 @@ public class UserListFragment extends BaseFragment implements UserListView {
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     final View fragmentView = inflater.inflate(R.layout.fragment_user_list, container, false);
-    butterKnifeUnBinder = ButterKnife.bind(this, fragmentView);
+    viewUnbinder = ButterKnife.bind(this, fragmentView);
     setupRecyclerView();
     return fragmentView;
   }
@@ -95,7 +95,7 @@ public class UserListFragment extends BaseFragment implements UserListView {
   @Override public void onDestroyView() {
     super.onDestroyView();
     rv_users.setAdapter(null);
-    butterKnifeUnBinder.unbind();
+    viewUnbinder.unbind();
   }
 
   @Override public void onDestroy() {

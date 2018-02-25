@@ -3,6 +3,7 @@
   <string name="app_name">Android Clean Architecture</string>
   <string name="url">http://www.android10.org/</string>
 
+  <string name="title_login">Login</string>
   <string name="title_home">Home</string>
   <string name="title_feeds">Feeds</string>
   <string name="title_explore">Explore</string>
