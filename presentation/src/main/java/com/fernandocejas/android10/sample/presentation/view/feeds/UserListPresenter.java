@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.android10.sample.presentation.presenter;
+package com.fernandocejas.android10.sample.presentation.view.feeds;
 
 import android.support.annotation.NonNull;
 import com.fernandocejas.android10.sample.domain.User;
@@ -25,7 +25,7 @@ import com.fernandocejas.android10.sample.presentation.exception.ErrorMessageFac
 import com.fernandocejas.android10.sample.presentation.internal.di.PerActivity;
 import com.fernandocejas.android10.sample.presentation.mapper.UserModelDataMapper;
 import com.fernandocejas.android10.sample.presentation.model.UserModel;
-import com.fernandocejas.android10.sample.presentation.view.UserListView;
+import com.fernandocejas.android10.sample.presentation.presenter.Presenter;
 import java.util.Collection;
 import java.util.List;
 import javax.inject.Inject;

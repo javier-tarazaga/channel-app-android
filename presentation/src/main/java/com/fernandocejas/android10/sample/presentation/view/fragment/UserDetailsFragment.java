@@ -20,6 +20,7 @@ import com.fernandocejas.android10.sample.presentation.R;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.UserComponent;
 import com.fernandocejas.android10.sample.presentation.model.UserModel;
 import com.fernandocejas.android10.sample.presentation.presenter.UserDetailsPresenter;
+import com.fernandocejas.android10.sample.presentation.view.BaseFragment;
 import com.fernandocejas.android10.sample.presentation.view.UserDetailsView;
 import com.fernandocejas.android10.sample.presentation.view.component.AutoLoadImageView;
 import com.fernandocejas.android10.sample.utils.Preconditions;

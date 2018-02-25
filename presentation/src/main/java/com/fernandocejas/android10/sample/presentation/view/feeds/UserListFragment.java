@@ -3,7 +3,7 @@
  *
  * @author Fernando Cejas (the android10 coder)
  */
-package com.fernandocejas.android10.sample.presentation.view.fragment;
+package com.fernandocejas.android10.sample.presentation.view.feeds;
 
 import android.app.Activity;
 import android.content.Context;
@@ -21,10 +21,9 @@ import butterknife.Unbinder;
 import com.fernandocejas.android10.sample.presentation.R;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.UserComponent;
 import com.fernandocejas.android10.sample.presentation.model.UserModel;
-import com.fernandocejas.android10.sample.presentation.presenter.UserListPresenter;
-import com.fernandocejas.android10.sample.presentation.view.UserListView;
 import com.fernandocejas.android10.sample.presentation.view.adapter.UsersAdapter;
 import com.fernandocejas.android10.sample.presentation.view.adapter.UsersLayoutManager;
+import com.fernandocejas.android10.sample.presentation.view.BaseFragment;
 import java.util.Collection;
 import javax.inject.Inject;
 

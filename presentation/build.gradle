@@ -79,6 +79,7 @@ dependencies {
     exclude module: 'support-v4'
   }
   implementation presentationDependencies.designLibrary
+  implementation 'com.github.ittianyu:BottomNavigationViewEx:1.2.4'
   implementation presentationDependencies.constraintLayout
   annotationProcessor presentationDependencies.daggerCompiler
   implementation presentationDependencies.dagger

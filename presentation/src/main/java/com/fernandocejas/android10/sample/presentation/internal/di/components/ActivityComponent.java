@@ -28,8 +28,7 @@ import dagger.Component;
  * {@link com.fernandocejas.android10.sample.presentation.internal.di.PerActivity}
  */
 @PerActivity
-@Component(dependencies = ApplicationComponent.class, modules = ActivityModule.class)
-interface ActivityComponent {
+@Component(dependencies = ApplicationComponent.class, modules = ActivityModule.class) public interface ActivityComponent {
   //Exposed to sub-graphs.
   Activity activity();
 }
