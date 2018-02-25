@@ -2,6 +2,7 @@ allprojects {
   repositories {
     google()
     jcenter()
+    maven { url "https://jitpack.io" }
   }
 }
 
@@ -13,11 +14,8 @@ ext {
   androidCompileSdkVersion = 26
 
   // Android
-  androidSupportVersion = '23.2.1'
-  androidDesignLibraryVersion = '25.3.1'
+  androidSupportVersion = '27.0.2'
   androidConstraintLayoutVersion = '1.0.2'
-  androidAnnotationsVersion = '21.0.3'
-  androidRecyclerViewVersion = '21.0.3'
 
   //Libraries
   daggerVersion = '2.8'
@@ -43,9 +41,9 @@ ext {
   leakCanaryVersion = '1.5.1'
 
   presentationDependencies = [appCompatV7        : "com.android.support:appcompat-v7:${androidSupportVersion}",
-                              designLibrary      : "com.android.support:design:${androidDesignLibraryVersion}",
+                              designLibrary      : "com.android.support:design:${androidSupportVersion}",
                               constraintLayout   : "com.android.support.constraint:constraint-layout:${androidConstraintLayoutVersion}",
-                              recyclerView       : "com.android.support:recyclerview-v7:${androidRecyclerViewVersion}",
+                              recyclerView       : "com.android.support:recyclerview-v7:${androidSupportVersion}",
                               daggerCompiler     : "com.google.dagger:dagger-compiler:${daggerVersion}",
                               dagger             : "com.google.dagger:dagger:${daggerVersion}",
                               butterKnife        : "com.jakewharton:butterknife:${butterKnifeVersion}",
@@ -76,14 +74,14 @@ ext {
                       rxAndroid         : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
                       javaxAnnotation   : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
                       javaxInject       : "javax.inject:javax.inject:${javaxInjectVersion}",
-                      androidAnnotations: "com.android.support:support-annotations:${androidAnnotationsVersion}"]
+                      androidAnnotations: "com.android.support:support-annotations:${androidSupportVersion}"]
 
   dataTestDependencies = [junit      : "junit:junit:${jUnitVersion}",
                           assertj    : "org.assertj:assertj-core:${assertJVersion}",
                           mockito    : "org.mockito:mockito-core:${mockitoVersion}",
                           robolectric: "org.robolectric:robolectric:${robolectricVersion}",]
 
-  utilsDependencies = [androidAnnotations: "com.android.support:support-annotations:${androidAnnotationsVersion}",]
+  utilsDependencies = [androidAnnotations: "com.android.support:support-annotations:${androidSupportVersion}",]
 
   developmentDependencies = [leakCanary    : "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}",
                              leakCanaryNoOp: "com.squareup.leakcanary:leakcanary-android-no-op:${leakCanaryVersion}"]
