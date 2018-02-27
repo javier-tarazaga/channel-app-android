@@ -1,28 +1,32 @@
 package com.fernandocejas.android10.sample.domain.feeds;
 
-public class Category {
-  private final String id;
-  private final String label;
-  private String description;
+import java.util.List;
 
-  public Category(String id, String label) {
+public class Category {
+
+  private final String id;
+  private final String title;
+
+  private List<Subscription> subscriptionList;
+
+  public Category(String id, String title) {
     this.id = id;
-    this.label = label;
+    this.title = title;
   }
 
   public String getId() {
     return id;
   }
 
-  public String getLabel() {
-    return label;
+  public String getTitle() {
+    return title;
   }
 
-  public String getDescription() {
-    return description;
+  public void setSubscriptionList(List<Subscription> subscriptionList) {
+    this.subscriptionList = subscriptionList;
   }
 
-  public void setDescription(String description) {
-    this.description = description;
+  public List<Subscription> getSubscriptionList() {
+    return subscriptionList;
   }
 }

@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,12 +16,14 @@
 package com.fernandocejas.android10.sample.presentation.internal.di.modules;
 
 import android.content.Context;
+import com.fernandocejas.android10.sample.data.executor.JobExecutor;
+import com.fernandocejas.android10.sample.data.feeds.FeedDataRepository;
+import com.fernandocejas.android10.sample.data.user.UserDataRepository;
 import com.fernandocejas.android10.sample.data.user.cache.UserCache;
 import com.fernandocejas.android10.sample.data.user.cache.UserCacheImpl;
-import com.fernandocejas.android10.sample.data.executor.JobExecutor;
-import com.fernandocejas.android10.sample.data.user.UserDataRepository;
 import com.fernandocejas.android10.sample.domain.executor.PostExecutionThread;
 import com.fernandocejas.android10.sample.domain.executor.ThreadExecutor;
+import com.fernandocejas.android10.sample.domain.feeds.FeedRepository;
 import com.fernandocejas.android10.sample.domain.repository.UserRepository;
 import com.fernandocejas.android10.sample.presentation.AndroidApplication;
 import com.fernandocejas.android10.sample.presentation.UIThread;
@@ -32,8 +34,7 @@ import javax.inject.Singleton;
 /**
  * Dagger module that provides objects which will live during the application lifecycle.
  */
-@Module
-public class ApplicationModule {
+@Module public class ApplicationModule {
   private final AndroidApplication application;
 
   public ApplicationModule(AndroidApplication application) {
@@ -54,6 +55,10 @@ public class ApplicationModule {
 
   @Provides @Singleton UserCache provideUserCache(UserCacheImpl userCache) {
     return userCache;
+  }
+
+  @Provides @Singleton FeedRepository providesFeedRepository(FeedDataRepository feedDataRepository) {
+    return feedDataRepository;
   }
 
   @Provides @Singleton UserRepository provideUserRepository(UserDataRepository userDataRepository) {

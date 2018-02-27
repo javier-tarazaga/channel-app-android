@@ -1,23 +1,19 @@
-package com.fernandocejas.android10.sample.data.feeds.entity;
+package com.fernandocejas.android10.sample.domain.feeds;
 
-import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
-public class SubscriptionEntity {
+public class Subscription {
   private final String id;
   private final String title;
   private final String website;
 
-  private List<CategoryEntity> categories;
+  private List<Category> categories;
   private List<String> topics;
-
-  @SerializedName("sortId")
-  private String sortId;
 
   private String iconUrl;
   private String visualUrl;
 
-  public SubscriptionEntity(String id, String title, String website) {
+  public Subscription(String id, String title, String website) {
     this.id = id;
     this.title = title;
     this.website = website;
@@ -35,11 +31,11 @@ public class SubscriptionEntity {
     return website;
   }
 
-  public List<CategoryEntity> getCategories() {
+  public List<Category> getCategories() {
     return categories;
   }
 
-  public void setCategories(List<CategoryEntity> categories) {
+  public void setCategories(List<Category> categories) {
     this.categories = categories;
   }
 
@@ -49,14 +45,6 @@ public class SubscriptionEntity {
 
   public void setTopics(List<String> topics) {
     this.topics = topics;
-  }
-
-  public String getSortId() {
-    return sortId;
-  }
-
-  public void setSortId(String sortId) {
-    this.sortId = sortId;
   }
 
   public String getIconUrl() {

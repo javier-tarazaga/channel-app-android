@@ -15,10 +15,10 @@
  */
 package com.fernandocejas.android10.sample.data.user;
 
-import com.fernandocejas.android10.sample.data.user.entity.UserEntity;
-import com.fernandocejas.android10.sample.data.user.entity.mapper.UserEntityDataMapper;
 import com.fernandocejas.android10.sample.data.user.datasource.UserDataStore;
 import com.fernandocejas.android10.sample.data.user.datasource.UserDataStoreFactory;
+import com.fernandocejas.android10.sample.data.user.entity.UserEntity;
+import com.fernandocejas.android10.sample.data.user.entity.mapper.UserEntityDataMapper;
 import com.fernandocejas.android10.sample.domain.User;
 import com.fernandocejas.android10.sample.domain.repository.UserRepository;
 import io.reactivex.Observable;
@@ -30,8 +30,7 @@ import javax.inject.Singleton;
 /**
  * {@link UserRepository} for retrieving user data.
  */
-@Singleton
-public class UserDataRepository implements UserRepository {
+@Singleton public class UserDataRepository implements UserRepository {
 
   private final UserDataStoreFactory userDataStoreFactory;
   private final UserEntityDataMapper userEntityDataMapper;
@@ -42,9 +41,7 @@ public class UserDataRepository implements UserRepository {
    * @param dataStoreFactory A factory to construct different data source implementations.
    * @param userEntityDataMapper {@link UserEntityDataMapper}.
    */
-  @Inject
-  UserDataRepository(UserDataStoreFactory dataStoreFactory,
-      UserEntityDataMapper userEntityDataMapper) {
+  @Inject UserDataRepository(UserDataStoreFactory dataStoreFactory, UserEntityDataMapper userEntityDataMapper) {
     this.userDataStoreFactory = dataStoreFactory;
     this.userEntityDataMapper = userEntityDataMapper;
   }

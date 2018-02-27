@@ -38,7 +38,7 @@ public class GetUserDetails extends UseCase<User, GetUserDetails.Params> {
     this.userRepository = userRepository;
   }
 
-  @Override Observable<User> buildUseCaseObservable(Params params) {
+  @Override protected Observable<User> buildUseCaseObservable(Params params) {
     Preconditions.checkNotNull(params);
     return this.userRepository.user(params.userId);
   }

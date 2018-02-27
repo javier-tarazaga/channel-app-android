@@ -3,6 +3,7 @@
   <string name="app_name">Android Clean Architecture</string>
   <string name="url">http://www.android10.org/</string>
 
+  <string name="title_activity_main">Main</string>
   <string name="title_login">Login</string>
   <string name="title_home">Home</string>
   <string name="title_read_later">Read Later</string>
@@ -26,7 +27,7 @@
   <string name="exception_message_generic">There was an application error</string>
   <string name="exception_message_no_connection">There is no internet connection</string>
   <string name="exception_message_user_not_found">Cannot retrieve user data. Check your internet connection</string>
-  <string name="title_activity_main2">Main2Activity</string>
+
 
   <string name="navigation_drawer_open">Open navigation drawer</string>
   <string name="navigation_drawer_close">Close navigation drawer</string>

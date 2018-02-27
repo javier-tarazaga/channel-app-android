@@ -1,5 +1,6 @@
-package com.fernandocejas.android10.sample.presentation.view.activity;
+package com.fernandocejas.android10.sample.presentation.view.main;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -16,23 +17,34 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.fernandocejas.android10.sample.presentation.R;
+import com.fernandocejas.android10.sample.presentation.internal.di.HasComponent;
+import com.fernandocejas.android10.sample.presentation.internal.di.components.ActivityComponent;
+import com.fernandocejas.android10.sample.presentation.internal.di.components.DaggerActivityComponent;
 import com.fernandocejas.android10.sample.presentation.view.BaseActivity;
-import com.fernandocejas.android10.sample.presentation.view.drawer.Feed;
 import com.fernandocejas.android10.sample.presentation.view.drawer.CategoryAdapter;
+import com.fernandocejas.android10.sample.presentation.view.drawer.CategoryModel;
+import com.fernandocejas.android10.sample.presentation.view.drawer.FeedModel;
 import com.fernandocejas.android10.sample.presentation.view.drawer.OnFeedItemClickListener;
 import com.fernandocejas.android10.sample.presentation.view.explore.ExploreFragment;
 import com.fernandocejas.android10.sample.presentation.view.feeds.FeedsFragment;
 import com.fernandocejas.android10.sample.presentation.view.home.HomeFragment;
 import com.fernandocejas.android10.sample.presentation.view.settings.SettingsFragment;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
+import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup;
+import java.util.ArrayList;
+import java.util.Collection;
+import javax.inject.Inject;
 
-import static com.fernandocejas.android10.sample.presentation.view.drawer.CategoryDataFactory.makeGenres;
+public class MainActivity extends BaseActivity implements HasComponent<ActivityComponent>, MainView,
+    NavigationView.OnNavigationItemSelectedListener {
 
-public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
+  @Inject MainPresenter mainPresenter;
 
   @BindView(R.id.bottom_nav_main) BottomNavigationViewEx bottomNavigationView;
   @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
+  @BindView(R.id.recycler_view) RecyclerView recyclerView;
 
+  private ActivityComponent activityComponent;
   private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemReselectedListener =
       new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -55,12 +67,36 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         }
       };
 
+
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+
+    initializeInjector();
+
     ButterKnife.bind(this);
 
+    this.mainPresenter.setView(this);
     setupView();
+
+    if (savedInstanceState == null) {
+      this.loadCategoryList();
+    }
+  }
+
+  @Override protected void onResume() {
+    super.onResume();
+    this.mainPresenter.resume();
+  }
+
+  @Override protected void onPause() {
+    super.onPause();
+    this.mainPresenter.pause();
+  }
+
+  @Override protected void onDestroy() {
+    super.onDestroy();
+    this.mainPresenter.destroy();
   }
 
   @Override public void onBackPressed() {
@@ -115,10 +151,57 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     return true;
   }
 
+  @Override public void showLoading() {
+
+  }
+
+  @Override public void hideLoading() {
+
+  }
+
+  @Override public void showRetry() {
+
+  }
+
+  @Override public void hideRetry() {
+
+  }
+
+  @Override public void showError(String message) {
+
+  }
+
+  @Override public Context context() {
+    return this;
+  }
+
+  @Override public void renderCategoryList(Collection<CategoryModel> categoryModelsCollection) {
+    if (categoryModelsCollection != null) {
+      CategoryAdapter adapter = new CategoryAdapter(new ArrayList<ExpandableGroup>());
+      adapter.setOnArticleItemClickListener(new OnFeedItemClickListener() {
+        @Override public boolean onFeedItemClick(FeedModel feedModel) {
+          Toast.makeText(MainActivity.this, feedModel.getTitle(), Toast.LENGTH_LONG).show();
+          return false;
+        }
+      });
+
+      recyclerView.setAdapter(adapter);
+    }
+  }
+
+  private void initializeInjector() {
+    this.activityComponent = DaggerActivityComponent.builder()
+        .applicationComponent(getApplicationComponent())
+        .activityModule(getActivityModule())
+        .build();
+
+    this.activityComponent.inject(this);
+  }
+
   private void setupView() {
     setupDrawer();
     setupNavigation();
-    bottomNavigationView();
+    setupBottomNavigationView();
   }
 
   private void setupDrawer() {
@@ -132,8 +215,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
   private void setupNavigation() {
     //NavigationView navigationView = findViewById(R.id.nav_view);
     //navigationView.setNavigationItemSelectedListener(this);
-
-    RecyclerView recyclerView = findViewById(R.id.recycler_view);
     LinearLayoutManager layoutManager = new LinearLayoutManager(this);
 
     // RecyclerView has some built in animations to it, using the DefaultItemAnimator.
@@ -144,23 +225,22 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
       ((DefaultItemAnimator) animator).setSupportsChangeAnimations(false);
     }
 
-    CategoryAdapter adapter = new CategoryAdapter(makeGenres());
-    adapter.setOnArticleItemClickListener(new OnFeedItemClickListener() {
-      @Override public boolean onFeedItemClick(Feed feed) {
-        Toast.makeText(MainActivity.this, feed.getName(), Toast.LENGTH_LONG).show();
-        return false;
-      }
-    });
-
     recyclerView.setLayoutManager(layoutManager);
-    recyclerView.setAdapter(adapter);
   }
 
-  private void bottomNavigationView() {
+  private void setupBottomNavigationView() {
     bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemReselectedListener);
     bottomNavigationView.setCurrentItem(0);
     bottomNavigationView.enableShiftingMode(false);
     bottomNavigationView.enableItemShiftingMode(false);
     bottomNavigationView.setTextVisibility(false);
+  }
+
+  private void loadCategoryList() {
+    this.mainPresenter.initialize();
+  }
+
+  @Override public ActivityComponent getComponent() {
+    return null;
   }
 }

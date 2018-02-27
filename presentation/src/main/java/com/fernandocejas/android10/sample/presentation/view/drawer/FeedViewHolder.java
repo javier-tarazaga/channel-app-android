@@ -22,19 +22,20 @@ public class FeedViewHolder extends ChildViewHolder implements View.OnClickListe
     itemView.setOnClickListener(this);
   }
 
-  public void setArtistName(String name) {
+  public void setSubscriptionName(String name) {
     childTextView.setText(name);
   }
 
-  public void setArtistIcon(int resId) {
-    iconView.setBackgroundResource(resId);
+  public void setSubscriptionIcon(String iconUrl) {
+    // TODO
+    // iconView.setBackgroundResource(iconUrl);
   }
 
   @Override public void onClick(View view) {
     listener.onFeedClick(getAdapterPosition());
   }
 
-  public void setOnArtistClickListener(OnFeedClickListener listener) {
+  public void setOnSubscriptionClickListener(OnFeedClickListener listener) {
     this.listener = listener;
   }
 }

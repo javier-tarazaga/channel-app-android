@@ -18,6 +18,7 @@ package com.fernandocejas.android10.sample.presentation.internal.di.components;
 import android.app.Activity;
 import com.fernandocejas.android10.sample.presentation.internal.di.PerActivity;
 import com.fernandocejas.android10.sample.presentation.internal.di.modules.ActivityModule;
+import com.fernandocejas.android10.sample.presentation.view.main.MainActivity;
 import dagger.Component;
 
 /**
@@ -29,6 +30,8 @@ import dagger.Component;
  */
 @PerActivity
 @Component(dependencies = ApplicationComponent.class, modules = ActivityModule.class) public interface ActivityComponent {
+  void inject(MainActivity mainActivity);
+
   //Exposed to sub-graphs.
   Activity activity();
 }

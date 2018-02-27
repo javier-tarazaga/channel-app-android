@@ -35,13 +35,13 @@ public class CategoryAdapter extends ExpandableRecyclerViewAdapter<CategoryViewH
   public void onBindChildViewHolder(FeedViewHolder holder, int flatPosition,
       ExpandableGroup group, int childIndex) {
 
-    final Feed feed = ((Category) group).getItems().get(childIndex);
-    holder.setArtistName(feed.getName());
-    holder.setArtistIcon(feed.getIconResId());
-    holder.setOnArtistClickListener(new OnFeedClickListener() {
+    final FeedModel feedModel = ((CategoryModel) group).getItems().get(childIndex);
+    holder.setSubscriptionName(feedModel.getTitle());
+    holder.setSubscriptionIcon(feedModel.getIconUrl());
+    holder.setOnSubscriptionClickListener(new OnFeedClickListener() {
       @Override public boolean onFeedClick(int flatPos) {
         if (listener != null) {
-          listener.onFeedItemClick(feed);
+          listener.onFeedItemClick(feedModel);
           return true;
         }
 

@@ -23,7 +23,7 @@ public class CategoryViewHolder extends GroupViewHolder {
   }
 
   public void setGenreTitle(ExpandableGroup genre) {
-    if (genre instanceof Category) {
+    if (genre instanceof CategoryModel) {
       genreName.setText(genre.getTitle());
     }
   }

@@ -4,20 +4,20 @@ import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup;
 import java.util.List;
 import java.util.Objects;
 
-public class Category extends ExpandableGroup<Feed> {
+public class CategoryModel extends ExpandableGroup<FeedModel> {
 
-  public Category(String title, List<Feed> items) {
+  public CategoryModel(String title, List<FeedModel> items) {
     super(title, items);
   }
 
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
-    if (!(o instanceof Category)) return false;
+    if (!(o instanceof CategoryModel)) return false;
 
-    Category category = (Category) o;
+    CategoryModel categoryModel = (CategoryModel) o;
 
-    return Objects.equals(getTitle(), category.getTitle());
+    return Objects.equals(getTitle(), categoryModel.getTitle());
 
   }
 
