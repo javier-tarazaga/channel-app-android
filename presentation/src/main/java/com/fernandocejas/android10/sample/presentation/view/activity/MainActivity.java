@@ -7,17 +7,23 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.fernandocejas.android10.sample.presentation.R;
 import com.fernandocejas.android10.sample.presentation.view.BaseActivity;
+import com.fernandocejas.android10.sample.presentation.view.drawer.GenreAdapter;
 import com.fernandocejas.android10.sample.presentation.view.explore.ExploreFragment;
 import com.fernandocejas.android10.sample.presentation.view.feeds.FeedsFragment;
 import com.fernandocejas.android10.sample.presentation.view.home.HomeFragment;
 import com.fernandocejas.android10.sample.presentation.view.settings.SettingsFragment;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
+
+import static com.fernandocejas.android10.sample.presentation.view.drawer.GenreDataFactory.makeGenres;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -107,12 +113,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
   }
 
   private void setupView() {
-    setupToolbar();
+    setupDrawer();
     setupNavigation();
     bottomNavigationView();
   }
 
-  private void setupToolbar() {
+  private void setupDrawer() {
     //Toolbar toolbar = findViewById(R.id.toolbar);
     //setSupportActionBar(toolbar);
 
@@ -124,8 +130,23 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
   }
 
   private void setupNavigation() {
-    NavigationView navigationView = findViewById(R.id.nav_view);
-    navigationView.setNavigationItemSelectedListener(this);
+    //NavigationView navigationView = findViewById(R.id.nav_view);
+    //navigationView.setNavigationItemSelectedListener(this);
+
+    RecyclerView recyclerView = findViewById(R.id.recycler_view);
+    LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+
+    // RecyclerView has some built in animations to it, using the DefaultItemAnimator.
+    // Specifically when you call notifyItemChanged() it does a fade animation for the changing
+    // of the data in the ViewHolder. If you would like to disable this you can use the following:
+    RecyclerView.ItemAnimator animator = recyclerView.getItemAnimator();
+    if (animator instanceof DefaultItemAnimator) {
+      ((DefaultItemAnimator) animator).setSupportsChangeAnimations(false);
+    }
+
+    GenreAdapter adapter = new GenreAdapter(makeGenres());
+    recyclerView.setLayoutManager(layoutManager);
+    recyclerView.setAdapter(adapter);
   }
 
   private void bottomNavigationView() {

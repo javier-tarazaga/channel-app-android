@@ -75,8 +75,8 @@ dependencies {
   implementation project(':data')
   implementation project(':utils')
 
-  // TODO - To be removed
   implementation 'com.github.ittianyu:BottomNavigationViewEx:1.2.4'
+  implementation 'com.thoughtbot:expandablerecyclerview:1.3'
 
   implementation(presentationDependencies.appCompatV7) {
     exclude module: 'support-v4'

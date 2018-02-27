@@ -8,6 +8,7 @@
     <item name="colorAccent">@color/colorAccent</item>
 
     <item name="android:colorBackground">@color/colorBackground</item>
+    <item name="android:textColor">@color/black</item>
   </style>
 
   <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.NoActionBar">
@@ -17,6 +18,7 @@
     <item name="colorAccent">@color/colorAccent</item>
 
     <item name="android:colorBackground">@color/colorBackground</item>
+    <item name="android:textColor">@color/black</item>
   </style>
 
   <style name="AppTheme.ProgressBar">
