@@ -17,7 +17,7 @@ package com.fernandocejas.android10.sample.presentation.exception;
 
 import android.content.Context;
 import com.fernandocejas.android10.sample.data.exception.NetworkConnectionException;
-import com.fernandocejas.android10.sample.data.exception.UserNotFoundException;
+import com.fernandocejas.android10.sample.data.user.UserNotFoundException;
 import com.fernandocejas.android10.sample.presentation.R;
 
 /**

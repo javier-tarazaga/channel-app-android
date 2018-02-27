@@ -13,25 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.android10.sample.data.repository.datasource;
+package com.fernandocejas.android10.sample.data.feeds.datasource;
 
-import com.fernandocejas.android10.sample.data.entity.UserEntity;
+import com.fernandocejas.android10.sample.data.feeds.entity.CategoryEntity;
+import com.fernandocejas.android10.sample.domain.feeds.Category;
 import io.reactivex.Observable;
 import java.util.List;
 
 /**
  * Interface that represents a data store from where data is retrieved.
  */
-public interface UserDataStore {
-  /**
-   * Get an {@link Observable} which will emit a List of {@link UserEntity}.
-   */
-  Observable<List<UserEntity>> userEntityList();
+public interface FeedDataStore {
 
   /**
-   * Get an {@link Observable} which will emit a {@link UserEntity} by its id.
-   *
-   * @param userId The id to retrieve user data.
+   * Get an {@link Observable} which will emit a List of {@link Category}.
    */
-  Observable<UserEntity> userEntityDetails(final int userId);
+  Observable<List<CategoryEntity>> categoriesEntityList();
+
+  /**
+   * Get an {@link Observable} which will emit a {@link Category}.
+   *
+   * @param categoryId The id used to retrieve category data.
+   */
+  Observable<CategoryEntity> categoryEntity(final String categoryId);
 }

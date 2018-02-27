@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.android10.sample.data.repository.datasource;
+package com.fernandocejas.android10.sample.data.user.datasource;
 
-import com.fernandocejas.android10.sample.data.cache.UserCache;
+import com.fernandocejas.android10.sample.data.user.cache.UserCache;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

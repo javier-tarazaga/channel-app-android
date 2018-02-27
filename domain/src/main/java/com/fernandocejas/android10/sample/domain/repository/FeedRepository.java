@@ -13,13 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.android10.sample.data.exception;
+package com.fernandocejas.android10.sample.domain.repository;
+
+import com.fernandocejas.android10.sample.domain.feeds.Category;
+import io.reactivex.Observable;
+import java.util.List;
 
 /**
- * Exception throw by the application when a User search can't return a valid result.
+ * Interface that represents a Repository for getting feeds related data.
  */
-public class UserNotFoundException extends Exception {
-  public UserNotFoundException() {
-    super();
-  }
+public interface FeedRepository {
+
+  /**
+   * Get an {@link Observable} which will emit a List of {@link Category}.
+   */
+  Observable<List<Category>> categories();
+
+  /**
+   * Get an {@link Observable} which will emit a {@link Category}.
+   *
+   * @param categoryId The id used to retrieve category data.
+   */
+  Observable<Category> category(final int categoryId);
 }

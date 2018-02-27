@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.android10.sample.data.repository;
+package com.fernandocejas.android10.sample.data.user;
 
-import com.fernandocejas.android10.sample.data.entity.UserEntity;
-import com.fernandocejas.android10.sample.data.entity.mapper.UserEntityDataMapper;
-import com.fernandocejas.android10.sample.data.repository.datasource.UserDataStore;
-import com.fernandocejas.android10.sample.data.repository.datasource.UserDataStoreFactory;
+import com.fernandocejas.android10.sample.data.user.entity.UserEntity;
+import com.fernandocejas.android10.sample.data.user.entity.mapper.UserEntityDataMapper;
+import com.fernandocejas.android10.sample.data.user.datasource.UserDataStore;
+import com.fernandocejas.android10.sample.data.user.datasource.UserDataStoreFactory;
 import com.fernandocejas.android10.sample.domain.User;
 import com.fernandocejas.android10.sample.domain.repository.UserRepository;
 import io.reactivex.Observable;

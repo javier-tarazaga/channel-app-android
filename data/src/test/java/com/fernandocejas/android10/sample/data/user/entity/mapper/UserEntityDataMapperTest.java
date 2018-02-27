@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.android10.sample.data.entity.mapper;
+package com.fernandocejas.android10.sample.data.user.entity.mapper;
 
-import com.fernandocejas.android10.sample.data.entity.UserEntity;
+import com.fernandocejas.android10.sample.data.user.entity.UserEntity;
 import com.fernandocejas.android10.sample.domain.User;
 import java.util.ArrayList;
 import java.util.Collection;

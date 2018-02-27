@@ -41,7 +41,7 @@ public class FileManager {
    *
    * @param file The file to write to Disk.
    */
-  void writeToFile(File file, String fileContent) {
+  public void writeToFile(File file, String fileContent) {
     if (!file.exists()) {
       try {
         final FileWriter writer = new FileWriter(file);
@@ -61,7 +61,7 @@ public class FileManager {
    * @param file The file to read from.
    * @return A string with the content of the file.
    */
-  String readFileContent(File file) {
+  public String readFileContent(File file) {
     final StringBuilder fileContentBuilder = new StringBuilder();
     if (file.exists()) {
       String stringLine;
@@ -86,7 +86,7 @@ public class FileManager {
    * @param file The file to check existence.
    * @return true if this file exists, false otherwise.
    */
-  boolean exists(File file) {
+  public boolean exists(File file) {
     return file.exists();
   }
 
@@ -97,7 +97,7 @@ public class FileManager {
    *
    * @param directory The directory which its content will be deleted.
    */
-  boolean clearDirectory(File directory) {
+  public boolean clearDirectory(File directory) {
     boolean result = false;
     if (directory.exists()) {
       for (File file : directory.listFiles()) {
@@ -115,8 +115,7 @@ public class FileManager {
    * @param key A string for the key that will be used to retrieve the value in the future.
    * @param value A long representing the value to be inserted.
    */
-  void writeToPreferences(Context context, String preferenceFileName, String key,
-      long value) {
+  public void writeToPreferences(Context context, String preferenceFileName, String key, long value) {
 
     final SharedPreferences sharedPreferences = context.getSharedPreferences(preferenceFileName,
         Context.MODE_PRIVATE);
@@ -133,7 +132,7 @@ public class FileManager {
    * @param key A key that will be used to retrieve the value from the preference file.
    * @return A long representing the value retrieved from the preferences file.
    */
-  long getFromPreferences(Context context, String preferenceFileName, String key) {
+  public long getFromPreferences(Context context, String preferenceFileName, String key) {
     final SharedPreferences sharedPreferences = context.getSharedPreferences(preferenceFileName,
         Context.MODE_PRIVATE);
     return sharedPreferences.getLong(key, 0);
