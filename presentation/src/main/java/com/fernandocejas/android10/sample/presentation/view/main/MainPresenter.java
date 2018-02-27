@@ -7,7 +7,6 @@ import com.fernandocejas.android10.sample.domain.interactor.DefaultObserver;
 import com.fernandocejas.android10.sample.presentation.presenter.Presenter;
 import com.fernandocejas.android10.sample.presentation.view.main.drawer.CategoryModel;
 import com.fernandocejas.android10.sample.presentation.view.main.drawer.mapper.CategoryModelDataMapper;
-import java.util.Collection;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -70,10 +69,9 @@ public class MainPresenter implements Presenter {
     //TODO
   }
 
-  private void showCategorieListInView(List<Category> categoryCollection) {
-    final Collection<CategoryModel> categoryModelsCollection =
-        this.categoryModelDataMapper.transform(categoryCollection);
-    this.mainView.renderCategoryList(categoryModelsCollection);
+  private void showCategoryListInView(List<Category> categoryList) {
+    final List<CategoryModel> categoryModelList = this.categoryModelDataMapper.transform(categoryList);
+    this.mainView.renderCategoryList(categoryModelList);
   }
 
   private final class CategoriesObserver extends DefaultObserver<List<Category>> {
@@ -89,7 +87,7 @@ public class MainPresenter implements Presenter {
     }
 
     @Override public void onNext(List<Category> categoryList) {
-      MainPresenter.this.showCategorieListInView(categoryList);
+      MainPresenter.this.showCategoryListInView(categoryList);
     }
   }
 }

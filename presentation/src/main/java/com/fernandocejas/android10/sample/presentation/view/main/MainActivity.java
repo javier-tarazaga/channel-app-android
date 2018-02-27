@@ -28,9 +28,7 @@ import com.fernandocejas.android10.sample.presentation.view.main.drawer.FeedMode
 import com.fernandocejas.android10.sample.presentation.view.main.drawer.OnFeedItemClickListener;
 import com.fernandocejas.android10.sample.presentation.view.settings.SettingsFragment;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
-import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 import javax.inject.Inject;
 
 public class MainActivity extends BaseActivity implements HasComponent<MainComponent>, MainView,
@@ -173,9 +171,9 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
     return this;
   }
 
-  @Override public void renderCategoryList(Collection<CategoryModel> categoryModelsCollection) {
-    if (categoryModelsCollection != null) {
-      CategoryAdapter adapter = new CategoryAdapter(new ArrayList<ExpandableGroup>());
+  @Override public void renderCategoryList(List<CategoryModel> categoryModelsList) {
+    if (categoryModelsList != null) {
+      CategoryAdapter adapter = new CategoryAdapter(categoryModelsList);
       adapter.setOnArticleItemClickListener(new OnFeedItemClickListener() {
         @Override public boolean onFeedItemClick(FeedModel feedModel) {
           Toast.makeText(MainActivity.this, feedModel.getTitle(), Toast.LENGTH_LONG).show();
