@@ -16,6 +16,7 @@ import com.fernandocejas.android10.sample.presentation.view.BaseActivity;
 import com.fernandocejas.android10.sample.presentation.view.explore.ExploreFragment;
 import com.fernandocejas.android10.sample.presentation.view.feeds.FeedsFragment;
 import com.fernandocejas.android10.sample.presentation.view.home.HomeFragment;
+import com.fernandocejas.android10.sample.presentation.view.settings.SettingsFragment;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -63,7 +64,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {
     // Inflate the menu; this adds items to the action bar if it is present.
-    getMenuInflater().inflate(R.menu.main2, menu);
+    getMenuInflater().inflate(R.menu.main, menu);
     return true;
   }
 
@@ -86,18 +87,18 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     // Handle navigation view item clicks here.
     int id = item.getItemId();
 
-    if (id == R.id.nav_camera) {
-      // Handle the camera action
-    } else if (id == R.id.nav_gallery) {
-
-    } else if (id == R.id.nav_slideshow) {
-
-    } else if (id == R.id.nav_manage) {
-
-    } else if (id == R.id.nav_share) {
-
-    } else if (id == R.id.nav_send) {
-
+    switch (id) {
+      case R.id.nav_camera:
+        replaceFragment(R.id.fragment_container, SettingsFragment.newInstance());
+        break;
+      case R.id.nav_gallery:
+        break;
+      case R.id.nav_slideshow:
+        break;
+      case R.id.nav_manage:
+        break;
+      case R.id.nav_share:
+        break;
     }
 
     DrawerLayout drawer = findViewById(R.id.drawer_layout);

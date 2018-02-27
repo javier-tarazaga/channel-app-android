@@ -22,8 +22,10 @@
       android:layout_height="match_parent"
       android:layout_gravity="end"
       android:fitsSystemWindows="true"
+      app:itemTextColor="@color/black"
+      app:itemIconTint="@color/black"
       app:headerLayout="@layout/nav_header_main"
-      app:menu="@menu/activity_main2_drawer"
+      app:menu="@menu/activity_main_drawer"
       />
 
 </android.support.v4.widget.DrawerLayout>
