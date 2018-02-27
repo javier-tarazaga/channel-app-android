@@ -1,4 +1,4 @@
-package com.fernandocejas.android10.sample.presentation.view.drawer;
+package com.fernandocejas.android10.sample.presentation.view.main.drawer;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,14 +19,14 @@ public class CategoryAdapter extends ExpandableRecyclerViewAdapter<CategoryViewH
   @Override
   public CategoryViewHolder onCreateGroupViewHolder(ViewGroup parent, int viewType) {
     View view = LayoutInflater.from(parent.getContext())
-        .inflate(R.layout.row_item_genre, parent, false);
+        .inflate(R.layout.row_item_category, parent, false);
     return new CategoryViewHolder(view);
   }
 
   @Override
   public FeedViewHolder onCreateChildViewHolder(final ViewGroup parent, int viewType) {
     View view = LayoutInflater.from(parent.getContext())
-        .inflate(R.layout.row_item_artist, parent, false);
+        .inflate(R.layout.row_item_subscription, parent, false);
 
     return new FeedViewHolder(view);
   }

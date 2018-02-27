@@ -1,4 +1,4 @@
-package com.fernandocejas.android10.sample.presentation.view.drawer;
+package com.fernandocejas.android10.sample.presentation.view.main.drawer;
 
 import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup;
 import java.util.List;

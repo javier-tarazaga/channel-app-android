@@ -18,16 +18,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.fernandocejas.android10.sample.presentation.R;
 import com.fernandocejas.android10.sample.presentation.internal.di.HasComponent;
-import com.fernandocejas.android10.sample.presentation.internal.di.components.ActivityComponent;
-import com.fernandocejas.android10.sample.presentation.internal.di.components.DaggerActivityComponent;
 import com.fernandocejas.android10.sample.presentation.view.BaseActivity;
-import com.fernandocejas.android10.sample.presentation.view.drawer.CategoryAdapter;
-import com.fernandocejas.android10.sample.presentation.view.drawer.CategoryModel;
-import com.fernandocejas.android10.sample.presentation.view.drawer.FeedModel;
-import com.fernandocejas.android10.sample.presentation.view.drawer.OnFeedItemClickListener;
 import com.fernandocejas.android10.sample.presentation.view.explore.ExploreFragment;
 import com.fernandocejas.android10.sample.presentation.view.feeds.FeedsFragment;
 import com.fernandocejas.android10.sample.presentation.view.home.HomeFragment;
+import com.fernandocejas.android10.sample.presentation.view.main.drawer.CategoryAdapter;
+import com.fernandocejas.android10.sample.presentation.view.main.drawer.CategoryModel;
+import com.fernandocejas.android10.sample.presentation.view.main.drawer.FeedModel;
+import com.fernandocejas.android10.sample.presentation.view.main.drawer.OnFeedItemClickListener;
 import com.fernandocejas.android10.sample.presentation.view.settings.SettingsFragment;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup;
@@ -35,7 +33,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import javax.inject.Inject;
 
-public class MainActivity extends BaseActivity implements HasComponent<ActivityComponent>, MainView,
+public class MainActivity extends BaseActivity implements HasComponent<MainComponent>, MainView,
     NavigationView.OnNavigationItemSelectedListener {
 
   @Inject MainPresenter mainPresenter;
@@ -44,7 +42,7 @@ public class MainActivity extends BaseActivity implements HasComponent<ActivityC
   @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
   @BindView(R.id.recycler_view) RecyclerView recyclerView;
 
-  private ActivityComponent activityComponent;
+  private MainComponent mainComponent;
   private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemReselectedListener =
       new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -100,8 +98,8 @@ public class MainActivity extends BaseActivity implements HasComponent<ActivityC
   }
 
   @Override public void onBackPressed() {
-    if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
-      drawerLayout.closeDrawer(GravityCompat.END);
+    if (this.drawerLayout.isDrawerOpen(GravityCompat.END)) {
+      this.drawerLayout.closeDrawer(GravityCompat.END);
     } else {
       super.onBackPressed();
     }
@@ -185,17 +183,17 @@ public class MainActivity extends BaseActivity implements HasComponent<ActivityC
         }
       });
 
-      recyclerView.setAdapter(adapter);
+      this.recyclerView.setAdapter(adapter);
     }
   }
 
   private void initializeInjector() {
-    this.activityComponent = DaggerActivityComponent.builder()
+    this.mainComponent = DaggerMainComponent.builder()
         .applicationComponent(getApplicationComponent())
         .activityModule(getActivityModule())
         .build();
 
-    this.activityComponent.inject(this);
+    this.mainComponent.inject(this);
   }
 
   private void setupView() {
@@ -220,27 +218,27 @@ public class MainActivity extends BaseActivity implements HasComponent<ActivityC
     // RecyclerView has some built in animations to it, using the DefaultItemAnimator.
     // Specifically when you call notifyItemChanged() it does a fade animation for the changing
     // of the data in the ViewHolder. If you would like to disable this you can use the following:
-    RecyclerView.ItemAnimator animator = recyclerView.getItemAnimator();
+    RecyclerView.ItemAnimator animator = this.recyclerView.getItemAnimator();
     if (animator instanceof DefaultItemAnimator) {
       ((DefaultItemAnimator) animator).setSupportsChangeAnimations(false);
     }
 
-    recyclerView.setLayoutManager(layoutManager);
+    this.recyclerView.setLayoutManager(layoutManager);
   }
 
   private void setupBottomNavigationView() {
-    bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemReselectedListener);
-    bottomNavigationView.setCurrentItem(0);
-    bottomNavigationView.enableShiftingMode(false);
-    bottomNavigationView.enableItemShiftingMode(false);
-    bottomNavigationView.setTextVisibility(false);
+    this.bottomNavigationView.setOnNavigationItemSelectedListener(this.onNavigationItemReselectedListener);
+    this.bottomNavigationView.setCurrentItem(0);
+    this.bottomNavigationView.enableShiftingMode(false);
+    this.bottomNavigationView.enableItemShiftingMode(false);
+    this.bottomNavigationView.setTextVisibility(false);
   }
 
   private void loadCategoryList() {
     this.mainPresenter.initialize();
   }
 
-  @Override public ActivityComponent getComponent() {
-    return null;
+  @Override public MainComponent getComponent() {
+    return this.mainComponent;
   }
 }

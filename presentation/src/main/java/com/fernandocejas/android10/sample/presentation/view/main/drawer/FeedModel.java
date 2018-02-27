@@ -1,4 +1,4 @@
-package com.fernandocejas.android10.sample.presentation.view.drawer;
+package com.fernandocejas.android10.sample.presentation.view.main.drawer;
 
 import android.os.Parcel;
 import android.os.Parcelable;

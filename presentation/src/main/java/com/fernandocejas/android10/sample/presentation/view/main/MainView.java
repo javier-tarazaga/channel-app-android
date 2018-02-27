@@ -1,7 +1,7 @@
 package com.fernandocejas.android10.sample.presentation.view.main;
 
 import com.fernandocejas.android10.sample.presentation.view.LoadDataView;
-import com.fernandocejas.android10.sample.presentation.view.drawer.CategoryModel;
+import com.fernandocejas.android10.sample.presentation.view.main.drawer.CategoryModel;
 import java.util.Collection;
 
 /**

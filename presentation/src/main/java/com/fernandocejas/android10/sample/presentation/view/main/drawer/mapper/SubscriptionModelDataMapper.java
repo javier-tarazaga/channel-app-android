@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.android10.sample.presentation.view.drawer.mapper;
+package com.fernandocejas.android10.sample.presentation.view.main.drawer.mapper;
 
 import com.fernandocejas.android10.sample.data.feeds.entity.SubscriptionEntity;
 import com.fernandocejas.android10.sample.domain.feeds.Category;
 import com.fernandocejas.android10.sample.domain.feeds.Subscription;
 import com.fernandocejas.android10.sample.presentation.internal.di.PerActivity;
-import com.fernandocejas.android10.sample.presentation.view.drawer.CategoryModel;
-import com.fernandocejas.android10.sample.presentation.view.drawer.FeedModel;
+import com.fernandocejas.android10.sample.presentation.view.main.drawer.CategoryModel;
+import com.fernandocejas.android10.sample.presentation.view.main.drawer.FeedModel;
 import com.fernandocejas.android10.sample.utils.Preconditions;
 import java.util.ArrayList;
 import java.util.Collections;

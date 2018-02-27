@@ -13,23 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.android10.sample.presentation.internal.di.components;
+package com.fernandocejas.android10.sample.presentation.view.main;
 
-import android.app.Activity;
 import com.fernandocejas.android10.sample.presentation.internal.di.PerActivity;
+import com.fernandocejas.android10.sample.presentation.internal.di.components.ActivityComponent;
+import com.fernandocejas.android10.sample.presentation.internal.di.components.ApplicationComponent;
 import com.fernandocejas.android10.sample.presentation.internal.di.modules.ActivityModule;
 import dagger.Component;
 
 /**
- * A base component upon which fragment's components may depend.
- * Activity-level components should extend this component.
- *
- * Subtypes of ActivityComponent should be decorated with annotation:
- * {@link com.fernandocejas.android10.sample.presentation.internal.di.PerActivity}
+ * A scope {@link PerActivity} component.
+ * Injects main specific Activity.
  */
-@PerActivity @Component(dependencies = ApplicationComponent.class, modules = ActivityModule.class)
-public interface ActivityComponent {
-
-  //Exposed to sub-graphs.
-  Activity activity();
+@PerActivity @Component(dependencies = ApplicationComponent.class, modules = { ActivityModule.class, MainModule.class })
+interface MainComponent extends ActivityComponent {
+  void inject(MainActivity mainActivity);
 }

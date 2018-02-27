@@ -51,6 +51,6 @@ public class UserListActivity extends BaseActivity implements HasComponent<UserC
   }
 
   @Override public void onUserClicked(UserModel userModel) {
-    this.navigator.navigateToUserDetails(this, userModel.getUserId());
+    // this.navigator.navigateToUserDetails(this, userModel.getUserId());
   }
 }

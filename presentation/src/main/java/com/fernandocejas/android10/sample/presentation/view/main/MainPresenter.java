@@ -5,8 +5,8 @@ import com.fernandocejas.android10.sample.domain.feeds.Category;
 import com.fernandocejas.android10.sample.domain.feeds.interactors.GetCategoryList;
 import com.fernandocejas.android10.sample.domain.interactor.DefaultObserver;
 import com.fernandocejas.android10.sample.presentation.presenter.Presenter;
-import com.fernandocejas.android10.sample.presentation.view.drawer.CategoryModel;
-import com.fernandocejas.android10.sample.presentation.view.drawer.mapper.CategoryModelDataMapper;
+import com.fernandocejas.android10.sample.presentation.view.main.drawer.CategoryModel;
+import com.fernandocejas.android10.sample.presentation.view.main.drawer.mapper.CategoryModelDataMapper;
 import java.util.Collection;
 import java.util.List;
 import javax.inject.Inject;
@@ -15,6 +15,7 @@ public class MainPresenter implements Presenter {
 
   private final GetCategoryList getCategoryList;
   private final CategoryModelDataMapper categoryModelDataMapper;
+
   private MainView mainView;
 
   @Inject public MainPresenter(GetCategoryList getCategoryList, CategoryModelDataMapper categoryModelDataMapper) {
@@ -69,7 +70,7 @@ public class MainPresenter implements Presenter {
     //TODO
   }
 
-  private void showCategoriesCollectionInView(List<Category> categoryCollection) {
+  private void showCategorieListInView(List<Category> categoryCollection) {
     final Collection<CategoryModel> categoryModelsCollection =
         this.categoryModelDataMapper.transform(categoryCollection);
     this.mainView.renderCategoryList(categoryModelsCollection);
@@ -88,7 +89,7 @@ public class MainPresenter implements Presenter {
     }
 
     @Override public void onNext(List<Category> categoryList) {
-      MainPresenter.this.showCategoriesCollectionInView(categoryList);
+      MainPresenter.this.showCategorieListInView(categoryList);
     }
   }
 }

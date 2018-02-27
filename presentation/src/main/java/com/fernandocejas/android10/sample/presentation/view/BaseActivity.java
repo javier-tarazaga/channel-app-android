@@ -7,15 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 import com.fernandocejas.android10.sample.presentation.AndroidApplication;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.ApplicationComponent;
 import com.fernandocejas.android10.sample.presentation.internal.di.modules.ActivityModule;
-import com.fernandocejas.android10.sample.presentation.navigation.Navigator;
-import javax.inject.Inject;
 
 /**
  * Base {@link android.app.Activity} class for every Activity in this application.
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
-  @Inject protected Navigator navigator;
+  // @Inject protected Navigator navigator;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

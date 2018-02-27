@@ -1,4 +1,4 @@
-package com.fernandocejas.android10.sample.presentation.view.drawer;
+package com.fernandocejas.android10.sample.presentation.view.main.drawer;
 
 import android.view.View;
 import android.widget.ImageView;
