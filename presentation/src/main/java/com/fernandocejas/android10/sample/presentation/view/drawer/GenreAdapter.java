@@ -10,6 +10,8 @@ import java.util.List;
 
 public class GenreAdapter extends ExpandableRecyclerViewAdapter<GenreViewHolder, ArtistViewHolder> {
 
+  public OnArtistItemClickListener listener;
+
   public GenreAdapter(List<? extends ExpandableGroup> groups) {
     super(groups);
   }
@@ -22,9 +24,10 @@ public class GenreAdapter extends ExpandableRecyclerViewAdapter<GenreViewHolder,
   }
 
   @Override
-  public ArtistViewHolder onCreateChildViewHolder(ViewGroup parent, int viewType) {
+  public ArtistViewHolder onCreateChildViewHolder(final ViewGroup parent, int viewType) {
     View view = LayoutInflater.from(parent.getContext())
         .inflate(R.layout.row_item_artist, parent, false);
+
     return new ArtistViewHolder(view);
   }
 
@@ -35,6 +38,16 @@ public class GenreAdapter extends ExpandableRecyclerViewAdapter<GenreViewHolder,
     final Artist artist = ((Genre) group).getItems().get(childIndex);
     holder.setArtistName(artist.getName());
     holder.setArtistIcon(artist.getIconResId());
+    holder.setOnArtistClickListener(new OnArtistClickListener() {
+      @Override public boolean onArtistClick(int flatPos) {
+        if (listener != null) {
+          listener.onArtistClick(artist);
+          return true;
+        }
+
+        return false;
+      }
+    });
   }
 
   @Override
@@ -42,5 +55,9 @@ public class GenreAdapter extends ExpandableRecyclerViewAdapter<GenreViewHolder,
       ExpandableGroup group) {
 
     holder.setGenreTitle(group);
+  }
+
+  public void setOnArticleItemClickListener(OnArtistItemClickListener listener) {
+    this.listener = listener;
   }
 }

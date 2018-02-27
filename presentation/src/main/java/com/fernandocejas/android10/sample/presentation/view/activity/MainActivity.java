@@ -12,11 +12,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.fernandocejas.android10.sample.presentation.R;
 import com.fernandocejas.android10.sample.presentation.view.BaseActivity;
+import com.fernandocejas.android10.sample.presentation.view.drawer.Artist;
 import com.fernandocejas.android10.sample.presentation.view.drawer.GenreAdapter;
+import com.fernandocejas.android10.sample.presentation.view.drawer.OnArtistItemClickListener;
 import com.fernandocejas.android10.sample.presentation.view.explore.ExploreFragment;
 import com.fernandocejas.android10.sample.presentation.view.feeds.FeedsFragment;
 import com.fernandocejas.android10.sample.presentation.view.home.HomeFragment;
@@ -119,9 +122,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
   }
 
   private void setupDrawer() {
-    //Toolbar toolbar = findViewById(R.id.toolbar);
-    //setSupportActionBar(toolbar);
-
     DrawerLayout drawer = findViewById(R.id.drawer_layout);
     ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, null, R.string.navigation_drawer_open,
         R.string.navigation_drawer_close);
@@ -145,6 +145,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     GenreAdapter adapter = new GenreAdapter(makeGenres());
+    adapter.setOnArticleItemClickListener(new OnArtistItemClickListener() {
+      @Override public boolean onArtistClick(Artist artist) {
+        Toast.makeText(MainActivity.this, artist.getName(), Toast.LENGTH_LONG).show();
+        return false;
+      }
+    });
+
     recyclerView.setLayoutManager(layoutManager);
     recyclerView.setAdapter(adapter);
   }
