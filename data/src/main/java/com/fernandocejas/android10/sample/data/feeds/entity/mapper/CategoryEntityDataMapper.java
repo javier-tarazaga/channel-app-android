@@ -18,7 +18,6 @@ package com.fernandocejas.android10.sample.data.feeds.entity.mapper;
 import com.fernandocejas.android10.sample.data.feeds.entity.CategoryEntity;
 import com.fernandocejas.android10.sample.domain.feeds.Category;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -49,17 +48,21 @@ public class CategoryEntityDataMapper {
   /**
    * Transform a List of {@link CategoryEntity} into a Collection of {@link Category}.
    *
-   * @param categoryEntityCollection Object Collection to be transformed.
+   * @param categoryEntityList Object Collection to be transformed.
    * @return {@link Category} if valid {@link CategoryEntity} otherwise null.
    */
-  public List<Category> transform(Collection<CategoryEntity> categoryEntityCollection) {
-    final List<Category> categoryList = new ArrayList<>(20);
-    for (CategoryEntity categoryEntity : categoryEntityCollection) {
-      final Category category = transform(categoryEntity);
-      if (category != null) {
-        categoryList.add(category);
+  public List<Category> transform(List<CategoryEntity> categoryEntityList) {
+    final List<Category> categoryList = new ArrayList<>();
+
+    if (categoryEntityList != null && !categoryEntityList.isEmpty()) {
+      for (CategoryEntity categoryEntity : categoryEntityList) {
+        final Category category = transform(categoryEntity);
+        if (category != null) {
+          categoryList.add(category);
+        }
       }
     }
+
     return categoryList;
   }
 }

@@ -20,7 +20,6 @@ import com.fernandocejas.android10.sample.presentation.internal.di.PerActivity;
 import com.fernandocejas.android10.sample.presentation.view.main.drawer.CategoryModel;
 import com.fernandocejas.android10.sample.utils.Preconditions;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -44,7 +43,7 @@ import javax.inject.Inject;
    */
   public CategoryModel transform(Category category) {
     Preconditions.checkNotNull(category, "Cannot transform a null value");
-    return new CategoryModel(category.getId(),
+    return new CategoryModel(category.getId(), category.getTitle(),
         this.subscriptionModelDataMapper.transform(category.getSubscriptionList()));
   }
 
@@ -55,15 +54,12 @@ import javax.inject.Inject;
    * @return {@link CategoryModel} if valid {@link Category} otherwise null.
    */
   public List<CategoryModel> transform(List<Category> categoryList) {
-    List<CategoryModel> categoryModelsCollection;
+    List<CategoryModel> categoryModelsCollection = new ArrayList<>();
 
     if (categoryList != null && !categoryList.isEmpty()) {
-      categoryModelsCollection = new ArrayList<>();
       for (Category category : categoryList) {
         categoryModelsCollection.add(transform(category));
       }
-    } else {
-      categoryModelsCollection = Collections.emptyList();
     }
 
     return categoryModelsCollection;

@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class CategoryModel extends ExpandableGroup<FeedModel> {
 
-  public CategoryModel(String title, List<FeedModel> items) {
+  public CategoryModel(String id, String title, List<FeedModel> items) {
     super(title, items);
   }
 
