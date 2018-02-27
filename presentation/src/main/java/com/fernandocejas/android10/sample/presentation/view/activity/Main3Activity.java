@@ -28,13 +28,13 @@ public class Main3Activity extends BaseActivity {
             case R.id.nav_home:
               replaceFragment(R.id.fragment_container, HomeFragment.newInstance());
               break;
-            case R.id.nav_feeds:
+            case R.id.nav_read_later:
               replaceFragment(R.id.fragment_container, FeedsFragment.newInstance());
               break;
             case R.id.nav_explore:
               replaceFragment(R.id.fragment_container, ExploreFragment.newInstance());
               break;
-            case R.id.nav_settings:
+            case R.id.nav_drawer:
               replaceFragment(R.id.fragment_container, SettingsFragment.newInstance());
               break;
           }
