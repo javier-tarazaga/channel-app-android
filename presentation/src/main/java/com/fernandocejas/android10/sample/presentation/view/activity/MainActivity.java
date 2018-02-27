@@ -17,16 +17,16 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.fernandocejas.android10.sample.presentation.R;
 import com.fernandocejas.android10.sample.presentation.view.BaseActivity;
-import com.fernandocejas.android10.sample.presentation.view.drawer.Artist;
-import com.fernandocejas.android10.sample.presentation.view.drawer.GenreAdapter;
-import com.fernandocejas.android10.sample.presentation.view.drawer.OnArtistItemClickListener;
+import com.fernandocejas.android10.sample.presentation.view.drawer.Feed;
+import com.fernandocejas.android10.sample.presentation.view.drawer.CategoryAdapter;
+import com.fernandocejas.android10.sample.presentation.view.drawer.OnFeedItemClickListener;
 import com.fernandocejas.android10.sample.presentation.view.explore.ExploreFragment;
 import com.fernandocejas.android10.sample.presentation.view.feeds.FeedsFragment;
 import com.fernandocejas.android10.sample.presentation.view.home.HomeFragment;
 import com.fernandocejas.android10.sample.presentation.view.settings.SettingsFragment;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
-import static com.fernandocejas.android10.sample.presentation.view.drawer.GenreDataFactory.makeGenres;
+import static com.fernandocejas.android10.sample.presentation.view.drawer.CategoryDataFactory.makeGenres;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -144,10 +144,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
       ((DefaultItemAnimator) animator).setSupportsChangeAnimations(false);
     }
 
-    GenreAdapter adapter = new GenreAdapter(makeGenres());
-    adapter.setOnArticleItemClickListener(new OnArtistItemClickListener() {
-      @Override public boolean onArtistClick(Artist artist) {
-        Toast.makeText(MainActivity.this, artist.getName(), Toast.LENGTH_LONG).show();
+    CategoryAdapter adapter = new CategoryAdapter(makeGenres());
+    adapter.setOnArticleItemClickListener(new OnFeedItemClickListener() {
+      @Override public boolean onFeedItemClick(Feed feed) {
+        Toast.makeText(MainActivity.this, feed.getName(), Toast.LENGTH_LONG).show();
         return false;
       }
     });

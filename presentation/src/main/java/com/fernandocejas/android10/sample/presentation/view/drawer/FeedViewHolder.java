@@ -8,14 +8,14 @@ import butterknife.ButterKnife;
 import com.fernandocejas.android10.sample.presentation.R;
 import com.thoughtbot.expandablerecyclerview.viewholders.ChildViewHolder;
 
-public class ArtistViewHolder extends ChildViewHolder implements View.OnClickListener {
+public class FeedViewHolder extends ChildViewHolder implements View.OnClickListener {
 
   @BindView(R.id.list_item_artist_name) TextView childTextView;
   @BindView(R.id.list_item_genre_icon) ImageView iconView;
 
-  private OnArtistClickListener listener;
+  private OnFeedClickListener listener;
 
-  public ArtistViewHolder(View itemView) {
+  public FeedViewHolder(View itemView) {
     super(itemView);
 
     ButterKnife.bind(this, itemView);
@@ -31,10 +31,10 @@ public class ArtistViewHolder extends ChildViewHolder implements View.OnClickLis
   }
 
   @Override public void onClick(View view) {
-    listener.onArtistClick(getAdapterPosition());
+    listener.onFeedClick(getAdapterPosition());
   }
 
-  public void setOnArtistClickListener(OnArtistClickListener listener) {
+  public void setOnArtistClickListener(OnFeedClickListener listener) {
     this.listener = listener;
   }
 }

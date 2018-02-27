@@ -3,19 +3,19 @@ package com.fernandocejas.android10.sample.presentation.view.drawer;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Artist implements Parcelable {
+public class Feed implements Parcelable {
 
   private String name;
   private boolean isFavorite;
   private int iconResId;
 
-  public Artist(String name, boolean isFavorite, int iconResId) {
+  public Feed(String name, boolean isFavorite, int iconResId) {
     this.name = name;
     this.isFavorite = isFavorite;
     this.iconResId = iconResId;
   }
 
-  protected Artist(Parcel in) {
+  protected Feed(Parcel in) {
     name = in.readString();
   }
 
@@ -34,12 +34,12 @@ public class Artist implements Parcelable {
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
-    if (!(o instanceof Artist)) return false;
+    if (!(o instanceof Feed)) return false;
 
-    Artist artist = (Artist) o;
+    Feed feed = (Feed) o;
 
-    if (isFavorite() != artist.isFavorite()) return false;
-    return getName() != null ? getName().equals(artist.getName()) : artist.getName() == null;
+    if (isFavorite() != feed.isFavorite()) return false;
+    return getName() != null ? getName().equals(feed.getName()) : feed.getName() == null;
 
   }
 
@@ -60,15 +60,15 @@ public class Artist implements Parcelable {
     return 0;
   }
 
-  public static final Creator<Artist> CREATOR = new Creator<Artist>() {
+  public static final Creator<Feed> CREATOR = new Creator<Feed>() {
     @Override
-    public Artist createFromParcel(Parcel in) {
-      return new Artist(in);
+    public Feed createFromParcel(Parcel in) {
+      return new Feed(in);
     }
 
     @Override
-    public Artist[] newArray(int size) {
-      return new Artist[size];
+    public Feed[] newArray(int size) {
+      return new Feed[size];
     }
   };
 }

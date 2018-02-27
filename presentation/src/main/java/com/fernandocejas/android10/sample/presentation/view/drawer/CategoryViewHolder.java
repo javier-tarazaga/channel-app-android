@@ -4,25 +4,26 @@ import android.view.View;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import com.fernandocejas.android10.sample.presentation.R;
 import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup;
 import com.thoughtbot.expandablerecyclerview.viewholders.GroupViewHolder;
 
 import static android.view.animation.Animation.RELATIVE_TO_SELF;
 
-public class GenreViewHolder extends GroupViewHolder {
+public class CategoryViewHolder extends GroupViewHolder {
 
-  private TextView genreName;
-  private ImageView arrow;
+  @BindView(R.id.list_item_genre_name) TextView genreName;
+  @BindView(R.id.list_item_genre_arrow) ImageView arrow;
 
-  public GenreViewHolder(View itemView) {
+  public CategoryViewHolder(View itemView) {
     super(itemView);
-    genreName = (TextView) itemView.findViewById(R.id.list_item_genre_name);
-    arrow = (ImageView) itemView.findViewById(R.id.list_item_genre_arrow);
+    ButterKnife.bind(this, itemView);
   }
 
   public void setGenreTitle(ExpandableGroup genre) {
-    if (genre instanceof Genre) {
+    if (genre instanceof Category) {
       genreName.setText(genre.getTitle());
     }
   }
