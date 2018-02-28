@@ -6,14 +6,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 public class StreamItemDecoration extends RecyclerView.ItemDecoration {
-  private int margin;
+
+  private final int margin;
 
   /**
    * Constructor
    *
    * @param margin desirable margin size in px between the views in the recyclerView
    */
-  public StreamItemDecoration(@IntRange(from = 0) int margin) {
+  StreamItemDecoration(@IntRange(from = 0) int margin) {
     this.margin = margin;
   }
 
