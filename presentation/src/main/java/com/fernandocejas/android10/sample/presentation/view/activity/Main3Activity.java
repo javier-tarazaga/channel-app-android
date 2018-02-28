@@ -9,7 +9,6 @@ import butterknife.ButterKnife;
 import com.fernandocejas.android10.sample.presentation.R;
 import com.fernandocejas.android10.sample.presentation.view.BaseActivity;
 import com.fernandocejas.android10.sample.presentation.view.explore.ExploreFragment;
-import com.fernandocejas.android10.sample.presentation.view.feeds.FeedsFragment;
 import com.fernandocejas.android10.sample.presentation.view.home.HomeFragment;
 import com.fernandocejas.android10.sample.presentation.view.settings.SettingsFragment;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
@@ -29,7 +28,7 @@ public class Main3Activity extends BaseActivity {
               replaceFragment(R.id.fragment_container, HomeFragment.newInstance());
               break;
             case R.id.nav_read_later:
-              replaceFragment(R.id.fragment_container, FeedsFragment.newInstance());
+              // replaceFragment(R.id.fragment_container, FeedsFragment.newInstance(feedModel));
               break;
             case R.id.nav_explore:
               replaceFragment(R.id.fragment_container, ExploreFragment.newInstance());

@@ -13,7 +13,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.fernandocejas.android10.sample.presentation.R;
@@ -49,7 +48,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
               replaceFragment(R.id.fragment_container, HomeFragment.newInstance());
               break;
             case R.id.nav_read_later:
-              replaceFragment(R.id.fragment_container, FeedsFragment.newInstance());
+              // replaceFragment(R.id.fragment_container, FeedsFragment.newInstance(feedModel));
               break;
             case R.id.nav_explore:
               replaceFragment(R.id.fragment_container, ExploreFragment.newInstance());
@@ -176,8 +175,9 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
       CategoryAdapter adapter = new CategoryAdapter(categoryModelsList);
       adapter.setOnArticleItemClickListener(new OnFeedItemClickListener() {
         @Override public boolean onFeedItemClick(FeedModel feedModel) {
-          Toast.makeText(MainActivity.this, feedModel.getTitle(), Toast.LENGTH_LONG).show();
-          return false;
+          MainActivity.this.drawerLayout.closeDrawers();
+          replaceFragment(R.id.fragment_container, FeedsFragment.newInstance(feedModel));
+          return true;
         }
       });
 
