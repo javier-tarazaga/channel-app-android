@@ -10,7 +10,6 @@ import com.fernandocejas.android10.sample.domain.feeds.FeedRepository;
 import com.fernandocejas.android10.sample.domain.feeds.Subscription;
 import io.reactivex.Observable;
 import io.reactivex.functions.Function;
-import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -54,22 +53,5 @@ import javax.inject.Singleton;
             return subscriptionEntityDataMapper.transform(subscriptionEntities);
           }
         });
-  }
-
-  private Observable<List<CategoryEntity>> getCategories() {
-    List<CategoryEntity> categoryList = new ArrayList<>();
-
-    categoryList.add(new CategoryEntity("1", "Android"));
-    categoryList.add(new CategoryEntity("2", "iOS"));
-
-    return Observable.just(categoryList);
-  }
-
-  private Observable<List<SubscriptionEntity>> getSubscriptions() {
-    List<SubscriptionEntity> subscriptionList = new ArrayList<>();
-    subscriptionList.add(new SubscriptionEntity("1", "Test", "test"));
-    subscriptionList.add(new SubscriptionEntity("2", "Test2", "test2"));
-
-    return Observable.just(subscriptionList);
   }
 }
