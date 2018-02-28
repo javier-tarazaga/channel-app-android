@@ -28,8 +28,9 @@ public abstract class BaseActivity extends AppCompatActivity {
    */
   protected void addFragment(int containerViewId, Fragment fragment) {
     final FragmentTransaction fragmentTransaction = this.getFragmentManager().beginTransaction();
-    fragmentTransaction.add(containerViewId, fragment);
-    fragmentTransaction.commit();
+    fragmentTransaction.add(containerViewId, fragment)
+        .addToBackStack(fragment.getTag())
+        .commit();
   }
 
   /**
@@ -40,8 +41,7 @@ public abstract class BaseActivity extends AppCompatActivity {
    */
   protected void replaceFragment(int containerViewId, Fragment fragment) {
     final FragmentTransaction fragmentTransaction = this.getFragmentManager().beginTransaction();
-    fragmentTransaction.replace(containerViewId, fragment);
-    fragmentTransaction.commit();
+    fragmentTransaction.replace(containerViewId, fragment).commit();
   }
 
   /**

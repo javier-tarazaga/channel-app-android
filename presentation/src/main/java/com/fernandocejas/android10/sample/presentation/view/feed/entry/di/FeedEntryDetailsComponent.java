@@ -18,7 +18,7 @@ package com.fernandocejas.android10.sample.presentation.view.feed.entry.di;
 import com.fernandocejas.android10.sample.presentation.internal.di.PerFragment;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.ApplicationComponent;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.FragmentComponent;
-import com.fernandocejas.android10.sample.presentation.view.feed.entry.FeedEntryDetailsDetailsFragment;
+import com.fernandocejas.android10.sample.presentation.view.feed.entry.FeedEntryDetailsFragment;
 import dagger.Component;
 
 /**
@@ -27,5 +27,5 @@ import dagger.Component;
  */
 @PerFragment @Component(dependencies = ApplicationComponent.class, modules = { FeedEntryDetailsModule.class })
 public interface FeedEntryDetailsComponent extends FragmentComponent {
-  void inject(FeedEntryDetailsDetailsFragment entryDetailsFragment);
+  void inject(FeedEntryDetailsFragment entryDetailsFragment);
 }

@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,12 +49,13 @@ public class FeedFragment extends BaseFragment implements FeedView {
    * Interface for listening stream events.
    */
   public interface FeedListListener {
-    void onEntryClicked(final EntryModel entryModel);
+    void renderFeedEntry(final EntryModel entryModel);
   }
 
   @Inject FeedPresenter feedPresenter;
   @Inject FeedAdapter feedAdapter;
 
+  @BindView(R.id.tb_feed_entry) Toolbar tb_feed_entry;
   @BindView(R.id.rv_entries) RecyclerView rv_entries;
   @BindView(R.id.rl_progress) RelativeLayout rl_progress;
   @BindView(R.id.rl_retry) RelativeLayout rl_retry;
@@ -85,13 +87,14 @@ public class FeedFragment extends BaseFragment implements FeedView {
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     final View fragmentView = inflater.inflate(R.layout.fragment_feed, container, false);
     viewUnbinder = ButterKnife.bind(this, fragmentView);
-    setupRecyclerView();
     return fragmentView;
   }
 
   @Override public void onViewCreated(View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     this.feedPresenter.setView(this);
+    this.setupView();
+
     if (savedInstanceState == null) {
       this.loadStream();
     }
@@ -149,7 +152,7 @@ public class FeedFragment extends BaseFragment implements FeedView {
 
   @Override public void viewEntry(EntryModel entryModel) {
     if (this.feedListListener != null) {
-      this.feedListListener.onEntryClicked(entryModel);
+      this.feedListListener.renderFeedEntry(entryModel);
     }
   }
 
@@ -159,6 +162,15 @@ public class FeedFragment extends BaseFragment implements FeedView {
 
   @Override public Context context() {
     return this.getActivity().getApplicationContext();
+  }
+
+  private void setupView() {
+    this.setupToolbar();
+    this.setupRecyclerView();
+  }
+
+  private void setupToolbar() {
+    this.tb_feed_entry.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
   }
 
   private void setupRecyclerView() {

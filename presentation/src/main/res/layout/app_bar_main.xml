@@ -20,7 +20,7 @@
       android:id="@+id/bottom_nav_main"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:background="@color/colorPrimary"
+      android:background="@color/grayLight"
       app:itemIconTint="@color/selector_item_primary_color"
       app:itemTextColor="@color/selector_item_primary_color"
       app:menu="@menu/navigaton"

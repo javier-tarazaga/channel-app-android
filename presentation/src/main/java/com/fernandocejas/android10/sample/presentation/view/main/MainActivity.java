@@ -20,6 +20,8 @@ import com.fernandocejas.android10.sample.presentation.internal.di.HasComponent;
 import com.fernandocejas.android10.sample.presentation.view.BaseActivity;
 import com.fernandocejas.android10.sample.presentation.view.explore.ExploreFragment;
 import com.fernandocejas.android10.sample.presentation.view.feed.FeedFragment;
+import com.fernandocejas.android10.sample.presentation.view.feed.entry.FeedEntryDetailsFragment;
+import com.fernandocejas.android10.sample.presentation.view.feed.model.EntryModel;
 import com.fernandocejas.android10.sample.presentation.view.home.HomeFragment;
 import com.fernandocejas.android10.sample.presentation.view.main.drawer.CategoryAdapter;
 import com.fernandocejas.android10.sample.presentation.view.main.drawer.CategoryModel;
@@ -31,7 +33,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 public class MainActivity extends BaseActivity implements HasComponent<MainComponent>, MainView,
-    NavigationView.OnNavigationItemSelectedListener {
+    NavigationView.OnNavigationItemSelectedListener, FeedFragment.FeedListListener {
 
   @Inject MainPresenter mainPresenter;
 
@@ -189,7 +191,15 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
   }
 
   @Override public void renderSubscription(FeedModel feedModel) {
-    replaceFragment(R.id.fragment_container, FeedFragment.newInstance(feedModel));
+    addFragment(R.id.fragment_container, FeedFragment.newInstance(feedModel));
+  }
+
+  @Override public void renderFeedEntry(EntryModel entryModel) {
+    addFragment(R.id.fragment_container, FeedEntryDetailsFragment.newInstance(entryModel));
+  }
+
+  @Override public MainComponent getComponent() {
+    return this.mainComponent;
   }
 
   private void initializeInjector() {
@@ -237,13 +247,13 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
     this.bottomNavigationView.enableShiftingMode(false);
     this.bottomNavigationView.enableItemShiftingMode(false);
     this.bottomNavigationView.setTextVisibility(false);
+
+    int iconSize = 28;
+    this.bottomNavigationView.setIconSize(iconSize, iconSize);
+    this.bottomNavigationView.setItemHeight(BottomNavigationViewEx.dp2px(this, iconSize + 18));
   }
 
   private void loadCategoryList() {
     this.mainPresenter.initialize();
-  }
-
-  @Override public MainComponent getComponent() {
-    return this.mainComponent;
   }
 }

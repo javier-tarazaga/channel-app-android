@@ -6,7 +6,11 @@
 
   <color name="colorBackground">@color/white</color>
 
+  <color name="colorToolbar">@color/gray</color>
+
   <color name="white">#FFFFFF</color>
   <color name="black">#000000</color>
   <color name="gray">#ccc</color>
+  <color name="grayLight">#f3f3f3</color>
+  <color name="grayDark">#a9a9a9</color>
 </resources>
