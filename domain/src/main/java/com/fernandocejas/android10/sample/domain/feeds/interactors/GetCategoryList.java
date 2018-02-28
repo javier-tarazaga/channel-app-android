@@ -31,10 +31,25 @@ public class GetCategoryList extends UseCase<List<Category>, Void> {
           @Override public List<Category> apply(List<Subscription> subscriptions, List<Category> categoryList)
               throws Exception {
 
-            if (categoryList != null) {
-              for(Category category : categoryList) {
-                category.setSubscriptionList(subscriptions);
+            if (categoryList != null && subscriptions != null) {
+
+              Category uncategorizedCategory = new Category("uncategorized", "Uncategorized");
+              for (Subscription subscription : subscriptions) {
+                if (subscription.getCategories().isEmpty()) {
+                  uncategorizedCategory.getSubscriptionList().add(subscription);
+                } else {
+                  for (Category subscriptionCategory : subscription.getCategories()) {
+                    for (Category category : categoryList) {
+                      if (subscriptionCategory.getId().equals(category.getId())) {
+                        category.getSubscriptionList().add(subscription);
+                      }
+                    }
+                  }
+                }
               }
+
+              // Make sure to finally add the category with all the subscriptions without one.
+              categoryList.add(uncategorizedCategory);
             }
 
             return categoryList;

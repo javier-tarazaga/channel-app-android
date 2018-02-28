@@ -1,5 +1,6 @@
 package com.fernandocejas.android10.sample.domain.feeds;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Category {
@@ -7,7 +8,7 @@ public class Category {
   private final String id;
   private final String title;
 
-  private List<Subscription> subscriptionList;
+  private List<Subscription> subscriptionList = new ArrayList<>();
 
   public Category(String id, String title) {
     this.id = id;
@@ -20,10 +21,6 @@ public class Category {
 
   public String getTitle() {
     return title;
-  }
-
-  public void setSubscriptionList(List<Subscription> subscriptionList) {
-    this.subscriptionList = subscriptionList;
   }
 
   public List<Subscription> getSubscriptionList() {
