@@ -16,18 +16,18 @@ public class FeedViewHolder extends ChildViewHolder implements View.OnClickListe
 
   private OnFeedClickListener listener;
 
-  public FeedViewHolder(View itemView) {
+  FeedViewHolder(View itemView) {
     super(itemView);
 
     ButterKnife.bind(this, itemView);
     itemView.setOnClickListener(this);
   }
 
-  public void setSubscriptionName(String name) {
+  void setSubscriptionName(String name) {
     childTextView.setText(name);
   }
 
-  public void setSubscriptionIcon(String iconUrl) {
+  void setSubscriptionIcon(String iconUrl) {
     Glide.with(itemView).load(iconUrl).into(iconView);
   }
 
@@ -35,7 +35,7 @@ public class FeedViewHolder extends ChildViewHolder implements View.OnClickListe
     listener.onFeedClick(getAdapterPosition());
   }
 
-  public void setOnSubscriptionClickListener(OnFeedClickListener listener) {
+  void setOnSubscriptionClickListener(OnFeedClickListener listener) {
     this.listener = listener;
   }
 }

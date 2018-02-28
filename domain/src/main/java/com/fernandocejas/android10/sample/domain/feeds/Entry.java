@@ -1,5 +1,6 @@
 package com.fernandocejas.android10.sample.domain.feeds;
 
+import android.support.annotation.Nullable;
 import java.util.List;
 
 public class Entry {
@@ -7,6 +8,7 @@ public class Entry {
 
   private String title;
   private Summary summary;
+  private Visual visual;
   private List<Thumbnail> thumbnailList;
 
   public Entry(String id) {
@@ -17,7 +19,7 @@ public class Entry {
     return id;
   }
 
-  public String getTitle() {
+  @Nullable public String getTitle() {
     return title;
   }
 
@@ -25,7 +27,7 @@ public class Entry {
     this.title = title;
   }
 
-  public Summary getSummary() {
+  @Nullable public Summary getSummary() {
     return summary;
   }
 
@@ -33,7 +35,15 @@ public class Entry {
     this.summary = summary;
   }
 
-  public List<Thumbnail> getThumbnailList() {
+  @Nullable public Visual getVisual() {
+    return visual;
+  }
+
+  public void setVisual(Visual visual) {
+    this.visual = visual;
+  }
+
+  @Nullable public List<Thumbnail> getThumbnailList() {
     return thumbnailList;
   }
 
@@ -50,6 +60,18 @@ public class Entry {
 
     public String getContent() {
       return content;
+    }
+  }
+
+  public static class Visual {
+    private final String url;
+
+    public Visual(String url) {
+      this.url = url;
+    }
+
+    public String getUrl() {
+      return url;
     }
   }
 

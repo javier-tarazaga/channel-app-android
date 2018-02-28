@@ -45,6 +45,7 @@ import javax.inject.Singleton;
       entry = new Entry(entryEntity.getId());
       entry.setTitle(entryEntity.getTitle());
       entry.setSummary(transform(entryEntity.getSummary()));
+      entry.setVisual(transform(entryEntity.getVisual()));
       entry.setThumbnailList(transformThumbnailList(entryEntity.getThumbnailEntityList()));
     }
     return entry;
@@ -78,6 +79,15 @@ import javax.inject.Singleton;
     }
 
     return summary;
+  }
+
+  @Nullable private Entry.Visual transform(EntryEntity.VisualEntity visualEntity) {
+    Entry.Visual visual = null;
+    if (visualEntity != null) {
+      visual = new Entry.Visual(visualEntity.getUrl());
+    }
+
+    return visual;
   }
 
   @Nullable private Entry.Thumbnail transform(EntryEntity.ThumbnailEntity thumbnailEntity) {

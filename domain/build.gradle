@@ -21,8 +21,10 @@ dependencies {
 
   implementation project(':utils')
 
+
   compileOnly domainDependencies.javaxAnnotation
 
+  implementation domainDependencies.androidSupportAnnotations
   implementation domainDependencies.javaxInject
   implementation domainDependencies.rxJava
 

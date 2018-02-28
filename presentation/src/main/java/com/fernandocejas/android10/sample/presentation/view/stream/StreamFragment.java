@@ -76,9 +76,8 @@ public class StreamFragment extends BaseFragment implements StreamView {
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    StreamComponent streamComponent = DaggerStreamComponent.builder()
-        .applicationComponent(getApplicationComponent())
-        .build();
+    StreamComponent streamComponent =
+        DaggerStreamComponent.builder().applicationComponent(getApplicationComponent()).build();
 
     streamComponent.inject(this);
   }
@@ -164,8 +163,13 @@ public class StreamFragment extends BaseFragment implements StreamView {
 
   private void setupRecyclerView() {
     this.streamAdapter.setOnItemClickListener(onItemClickListener);
-    this.rv_entries.setLayoutManager(new StreamLayoutManager(context()));
+
+    StreamLayoutManager streamLayoutManager = new StreamLayoutManager(context());
+    this.rv_entries.setLayoutManager(streamLayoutManager);
     this.rv_entries.setAdapter(streamAdapter);
+    StreamItemDecoration streamItemDecoration =
+        new StreamItemDecoration((int) getResources().getDimension(R.dimen.activity_vertical_margin));
+    this.rv_entries.addItemDecoration(streamItemDecoration);
   }
 
   /**

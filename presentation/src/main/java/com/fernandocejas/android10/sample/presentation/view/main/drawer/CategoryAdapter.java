@@ -45,7 +45,6 @@ public class CategoryAdapter extends ExpandableRecyclerViewAdapter<CategoryViewH
   }
 
   @Override public void onBindGroupViewHolder(CategoryViewHolder holder, int flatPosition, ExpandableGroup group) {
-
     holder.setGenreTitle(group);
   }
 

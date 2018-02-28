@@ -5,29 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="@dimen/lv_row_padding"
     android:background="@drawable/selector_item_user"
     >
 
   <ImageView
-      android:id="@+id/avatar"
-      android:layout_width="@dimen/lv_row_icon_width"
-      android:layout_height="@dimen/lv_row_icon_width"
-      android:src="@drawable/ic_launcher"
-      android:paddingLeft="@dimen/lv_row_icon_padding"
-      android:paddingRight="@dimen/lv_row_icon_padding"
+      android:id="@+id/iv_thumbnail"
+      android:layout_width="@dimen/lv_row_thumbnail_width"
+      android:layout_height="@dimen/lv_row_thumbnail_height"
+      android:paddingLeft="@dimen/lv_row_thumbnail_padding"
+      android:paddingRight="@dimen/lv_row_thumbnail_padding"
       android:contentDescription="@string/string_content_description"
+      android:layout_marginEnd="@dimen/activity_horizontal_margin"
       />
 
   <TextView
-      android:id="@+id/title"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:textSize="@dimen/lv_row_text_size"
+      android:id="@+id/tv_title"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textSize="@dimen/lv_row_title_size"
       android:textColor="@android:color/black"
-      android:gravity="center_vertical"
-      android:singleLine="true"
+      android:textStyle="bold"
+      android:maxLines="4"
       android:ellipsize="end"
+      tools:text="David Lynch Teaches Typing is probably not the best way to learn to typ, but it is fun and very weird"
       />
 
 </LinearLayout>

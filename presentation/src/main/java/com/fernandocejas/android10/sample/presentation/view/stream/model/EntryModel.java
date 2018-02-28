@@ -15,7 +15,7 @@
  */
 package com.fernandocejas.android10.sample.presentation.view.stream.model;
 
-import java.util.List;
+import android.support.annotation.Nullable;
 
 /**
  * Class that represents an entry in the presentation layer.
@@ -26,7 +26,7 @@ public class EntryModel {
 
   private String title;
   private String summary;
-  private List<EntryModel.ThumbnailModel> thumbnailList;
+  private String imageUrl;
 
   public EntryModel(String id) {
     this.id = id;
@@ -36,7 +36,7 @@ public class EntryModel {
     return id;
   }
 
-  public String getTitle() {
+  @Nullable public String getTitle() {
     return title;
   }
 
@@ -44,7 +44,7 @@ public class EntryModel {
     this.title = title;
   }
 
-  public String getSummary() {
+  @Nullable public String getSummary() {
     return summary;
   }
 
@@ -52,23 +52,11 @@ public class EntryModel {
     this.summary = summary;
   }
 
-  public List<EntryModel.ThumbnailModel> getThumbnailList() {
-    return thumbnailList;
+  @Nullable public String getImageUrl() {
+    return imageUrl;
   }
 
-  public void setThumbnailList(List<EntryModel.ThumbnailModel> thumbnailList) {
-    this.thumbnailList = thumbnailList;
-  }
-
-  public static class ThumbnailModel {
-    private final String url;
-
-    public ThumbnailModel(String url) {
-      this.url = url;
-    }
-
-    public String getUrl() {
-      return url;
-    }
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
   }
 }

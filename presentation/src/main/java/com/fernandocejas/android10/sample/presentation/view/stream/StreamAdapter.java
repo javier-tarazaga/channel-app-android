@@ -10,9 +10,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.fernandocejas.android10.sample.presentation.R;
 import com.fernandocejas.android10.sample.presentation.view.stream.model.EntryModel;
 import java.util.Collection;
@@ -44,13 +49,21 @@ public class StreamAdapter extends RecyclerView.Adapter<StreamAdapter.EntryViewH
   }
 
   @Override public EntryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-    final View view = this.layoutInflater.inflate(R.layout.row_user, parent, false);
+    final View view = this.layoutInflater.inflate(R.layout.row_entry, parent, false);
     return new EntryViewHolder(view);
   }
 
   @Override public void onBindViewHolder(EntryViewHolder holder, final int position) {
     final EntryModel entryModel = this.entryList.get(position);
-    holder.textViewTitle.setText(entryModel.getTitle());
+    holder.tv_title.setText(entryModel.getTitle());
+
+    RequestOptions requestOptions = new RequestOptions();
+    requestOptions = requestOptions.transforms(new CenterCrop(), new RoundedCorners(16));
+    Glide.with(holder.itemView)
+        .load(entryModel.getImageUrl())
+        .apply(requestOptions)
+        .into(holder.iv_thumbnail);
+
     holder.itemView.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         if (StreamAdapter.this.onItemClickListener != null) {
@@ -64,13 +77,13 @@ public class StreamAdapter extends RecyclerView.Adapter<StreamAdapter.EntryViewH
     return position;
   }
 
-  public void setEntryList(Collection<EntryModel> entryList) {
+  void setEntryList(Collection<EntryModel> entryList) {
     this.validateEntryList(entryList);
     this.entryList = (List<EntryModel>) entryList;
     this.notifyDataSetChanged();
   }
 
-  public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+  void setOnItemClickListener(OnItemClickListener onItemClickListener) {
     this.onItemClickListener = onItemClickListener;
   }
 
@@ -81,7 +94,8 @@ public class StreamAdapter extends RecyclerView.Adapter<StreamAdapter.EntryViewH
   }
 
   static class EntryViewHolder extends RecyclerView.ViewHolder {
-    @BindView(R.id.title) TextView textViewTitle;
+    @BindView(R.id.tv_title) TextView tv_title;
+    @BindView(R.id.iv_thumbnail) ImageView iv_thumbnail;
 
     EntryViewHolder(View itemView) {
       super(itemView);

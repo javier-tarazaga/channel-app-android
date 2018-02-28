@@ -41,13 +41,13 @@ import javax.inject.Inject;
    * @param entry Object to be transformed.
    * @return {@link EntryModel} if valid {@link Entry} otherwise null.
    */
-  @Nullable public EntryModel transform(Entry entry) {
+  @Nullable EntryModel transform(Entry entry) {
     EntryModel entryModel = null;
     if (entry != null) {
       entryModel = new EntryModel(entry.getId());
       entryModel.setTitle(entry.getTitle());
-      entryModel.setSummary(entry.getSummary().getContent());
-      entryModel.setThumbnailList(transformThumbnailList(entry.getThumbnailList()));
+      entryModel.setImageUrl(entry.getVisual() != null ? entry.getVisual().getUrl() : null);
+      entryModel.setSummary(entry.getSummary() != null ? entry.getSummary().getContent() : null);
     }
     return entryModel;
   }
@@ -58,12 +58,12 @@ import javax.inject.Inject;
    * @param entryList Object Collection to be transformed.
    * @return {@link Entry} if valid {@link Entry} otherwise null.
    */
-  @NonNull public List<EntryModel> transform(List<Entry> entryList) {
+  @NonNull List<EntryModel> transform(List<Entry> entryList) {
     final List<EntryModel> entryListModel = new ArrayList<>();
 
     if (entryList != null && !entryList.isEmpty()) {
-      for (Entry categoryEntity : entryList) {
-        final EntryModel entryModel = transform(categoryEntity);
+      for (Entry entry : entryList) {
+        final EntryModel entryModel = transform(entry);
         if (entryModel != null) {
           entryListModel.add(entryModel);
         }
@@ -71,29 +71,5 @@ import javax.inject.Inject;
     }
 
     return entryListModel;
-  }
-
-  @Nullable private EntryModel.ThumbnailModel transform(Entry.Thumbnail thumbnail) {
-    EntryModel.ThumbnailModel thumbnailModel = null;
-    if (thumbnail != null) {
-      thumbnailModel = new EntryModel.ThumbnailModel(thumbnail.getUrl());
-    }
-
-    return thumbnailModel;
-  }
-
-  @NonNull private List<EntryModel.ThumbnailModel> transformThumbnailList(List<Entry.Thumbnail> thumbnailList) {
-    final List<EntryModel.ThumbnailModel> thumbnailModelList = new ArrayList<>();
-
-    if (thumbnailList != null && !thumbnailList.isEmpty()) {
-      for (Entry.Thumbnail thumbnail : thumbnailList) {
-        final EntryModel.ThumbnailModel thumbnailModel = transform(thumbnail);
-        if (thumbnail != null) {
-          thumbnailModelList.add(thumbnailModel);
-        }
-      }
-    }
-
-    return thumbnailModelList;
   }
 }

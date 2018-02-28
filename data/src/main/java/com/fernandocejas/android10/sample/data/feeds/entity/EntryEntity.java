@@ -1,5 +1,6 @@
 package com.fernandocejas.android10.sample.data.feeds.entity;
 
+import android.support.annotation.Nullable;
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
@@ -8,6 +9,7 @@ public class EntryEntity {
 
   private String title;
   private SummaryEntity summary;
+  private VisualEntity visual;
   @SerializedName("thumbnail") private List<ThumbnailEntity> thumbnailEntityList;
 
   public EntryEntity(String id) {
@@ -18,7 +20,7 @@ public class EntryEntity {
     return id;
   }
 
-  public String getTitle() {
+  @Nullable public String getTitle() {
     return title;
   }
 
@@ -26,7 +28,7 @@ public class EntryEntity {
     this.title = title;
   }
 
-  public SummaryEntity getSummary() {
+  @Nullable public SummaryEntity getSummary() {
     return summary;
   }
 
@@ -34,7 +36,15 @@ public class EntryEntity {
     this.summary = summary;
   }
 
-  public List<ThumbnailEntity> getThumbnailEntityList() {
+  @Nullable public VisualEntity getVisual() {
+    return visual;
+  }
+
+  public void setVisual(VisualEntity visual) {
+    this.visual = visual;
+  }
+
+  @Nullable public List<ThumbnailEntity> getThumbnailEntityList() {
     return thumbnailEntityList;
   }
 
@@ -51,6 +61,18 @@ public class EntryEntity {
 
     public String getContent() {
       return content;
+    }
+  }
+
+  public static class VisualEntity {
+    private final String url;
+
+    public VisualEntity(String url) {
+      this.url = url;
+    }
+
+    public String getUrl() {
+      return url;
     }
   }
 

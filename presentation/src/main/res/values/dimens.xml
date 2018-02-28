@@ -10,9 +10,14 @@
 
   <!--Listview rows stuff-->
   <dimen name="lv_row_padding">5dp</dimen>
-  <dimen name="lv_row_text_size">20sp</dimen>
-  <dimen name="lv_row_icon_width">50dp</dimen>
-  <dimen name="lv_row_icon_padding">5dp</dimen>
+  <dimen name="lv_row_title_size">14sp</dimen>
+  <dimen name="lv_row_thumbnail_height">90dp</dimen>
+  <dimen name="lv_row_thumbnail_width">110dp</dimen>
+  <dimen name="lv_row_thumbnail_padding">5dp</dimen>
+
+  <dimen name="lv_row_engagement_size">12sp</dimen>
+  <dimen name="lv_row_author_size">12sp</dimen>
+
   <dimen name="nav_header_vertical_spacing">8dp</dimen>
   <dimen name="nav_header_height">176dp</dimen>
   <dimen name="fab_margin">16dp</dimen>
