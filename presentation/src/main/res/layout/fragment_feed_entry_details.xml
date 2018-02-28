@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+  <ImageView
+      android:id="@+id/iv_entry"
+      android:layout_width="30dp"
+      android:layout_height="30dp"/>
+
+  <TextView
+      android:id="@+id/tv_title"
+      android:layout_below="@+id/iv_entry"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textSize="16sp"
+      tools:text="How a secretive, unknown smartphone app became the center of Turkey's post-coup crackdown"
+      />
+
+  <TextView
+      android:id="@+id/tv_content"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut suscipit risus velit, id vestibulum libero interdum vitae. Phasellus facilisis dolor vitae hendrerit lobortis. In hac habitasse platea dictumst. Sed egestas, felis at efficitur suscipit, sapien dolor cursus elit, a commodo metus dui vitae est. Fusce egestas nibh ac dolor iaculis, vitae blandit orci convallis. Donec maximus urna imperdiet hendrerit condimentum. Duis quis tellus sit amet purus tincidunt varius sit amet non ex."
+      />
+
+
+</RelativeLayout>

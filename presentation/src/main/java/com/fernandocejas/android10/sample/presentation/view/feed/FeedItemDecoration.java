@@ -1,11 +1,11 @@
-package com.fernandocejas.android10.sample.presentation.view.stream;
+package com.fernandocejas.android10.sample.presentation.view.feed;
 
 import android.graphics.Rect;
 import android.support.annotation.IntRange;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-public class StreamItemDecoration extends RecyclerView.ItemDecoration {
+public class FeedItemDecoration extends RecyclerView.ItemDecoration {
 
   private final int margin;
 
@@ -14,7 +14,7 @@ public class StreamItemDecoration extends RecyclerView.ItemDecoration {
    *
    * @param margin desirable margin size in px between the views in the recyclerView
    */
-  StreamItemDecoration(@IntRange(from = 0) int margin) {
+  FeedItemDecoration(@IntRange(from = 0) int margin) {
     this.margin = margin;
   }
 

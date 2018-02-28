@@ -19,7 +19,7 @@ import com.fernandocejas.android10.sample.presentation.R;
 import com.fernandocejas.android10.sample.presentation.internal.di.HasComponent;
 import com.fernandocejas.android10.sample.presentation.view.BaseActivity;
 import com.fernandocejas.android10.sample.presentation.view.explore.ExploreFragment;
-import com.fernandocejas.android10.sample.presentation.view.stream.StreamFragment;
+import com.fernandocejas.android10.sample.presentation.view.feed.FeedFragment;
 import com.fernandocejas.android10.sample.presentation.view.home.HomeFragment;
 import com.fernandocejas.android10.sample.presentation.view.main.drawer.CategoryAdapter;
 import com.fernandocejas.android10.sample.presentation.view.main.drawer.CategoryModel;
@@ -189,7 +189,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
   }
 
   @Override public void renderSubscription(FeedModel feedModel) {
-    replaceFragment(R.id.fragment_container, StreamFragment.newInstance(feedModel));
+    replaceFragment(R.id.fragment_container, FeedFragment.newInstance(feedModel));
   }
 
   private void initializeInjector() {

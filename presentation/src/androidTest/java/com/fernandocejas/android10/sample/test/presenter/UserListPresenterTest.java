@@ -18,8 +18,8 @@ package com.fernandocejas.android10.sample.test.presenter;
 import android.content.Context;
 import com.fernandocejas.android10.sample.domain.interactor.GetUserList;
 import com.fernandocejas.android10.sample.presentation.mapper.UserModelDataMapper;
-import com.fernandocejas.android10.sample.presentation.view.stream.StreamPresenter;
-import com.fernandocejas.android10.sample.presentation.view.stream.StreamView;
+import com.fernandocejas.android10.sample.presentation.view.feed.FeedPresenter;
+import com.fernandocejas.android10.sample.presentation.view.feed.FeedView;
 import io.reactivex.observers.DisposableObserver;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,28 +34,28 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class UserListPresenterTest {
 
-  private StreamPresenter streamPresenter;
+  private FeedPresenter feedPresenter;
 
   @Mock private Context mockContext;
-  @Mock private StreamView mockStreamView;
+  @Mock private FeedView mockFeedView;
   @Mock private GetUserList mockGetUserList;
   @Mock private UserModelDataMapper mockUserModelDataMapper;
 
   @Before
   public void setUp() {
-    streamPresenter = new StreamPresenter(mockGetUserList, mockUserModelDataMapper);
-    streamPresenter.setView(mockStreamView);
+    feedPresenter = new FeedPresenter(mockGetUserList, mockUserModelDataMapper);
+    feedPresenter.setView(mockFeedView);
   }
 
   @Test
   @SuppressWarnings("unchecked")
   public void testUserListPresenterInitialize() {
-    given(mockStreamView.context()).willReturn(mockContext);
+    given(mockFeedView.context()).willReturn(mockContext);
 
-    streamPresenter.initialize();
+    feedPresenter.initialize();
 
-    verify(mockStreamView).hideRetry();
-    verify(mockStreamView).showLoading();
+    verify(mockFeedView).hideRetry();
+    verify(mockFeedView).showLoading();
     verify(mockGetUserList).execute(any(DisposableObserver.class), any(Void.class));
   }
 }

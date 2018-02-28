@@ -1,8 +1,8 @@
-package com.fernandocejas.android10.sample.presentation.view.stream.model.mapper;
+package com.fernandocejas.android10.sample.presentation.view.feed.model.mapper;
 
 import com.fernandocejas.android10.sample.domain.feeds.StreamContent;
 import com.fernandocejas.android10.sample.presentation.internal.di.PerFragment;
-import com.fernandocejas.android10.sample.presentation.view.stream.model.StreamContentModel;
+import com.fernandocejas.android10.sample.presentation.view.feed.model.StreamContentModel;
 import java.util.stream.Stream;
 import javax.inject.Inject;
 

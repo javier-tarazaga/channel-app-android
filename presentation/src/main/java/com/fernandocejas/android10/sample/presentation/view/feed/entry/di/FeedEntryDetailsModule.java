@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.android10.sample.presentation.view.stream.di;
+package com.fernandocejas.android10.sample.presentation.view.feed.entry.di;
 
 import dagger.Module;
 
 /**
  * Dagger module that provides stream related collaborators.
  */
-@Module public class StreamModule {
+@Module public class FeedEntryDetailsModule {
 
-  public StreamModule() {
+  public FeedEntryDetailsModule() {
   }
 }

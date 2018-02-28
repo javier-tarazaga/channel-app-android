@@ -13,14 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.android10.sample.presentation.view.stream.model;
+package com.fernandocejas.android10.sample.presentation.view.feed.model;
 
 import android.support.annotation.Nullable;
+import java.io.Serializable;
 
 /**
  * Class that represents an entry in the presentation layer.
  */
-public class EntryModel {
+public class EntryModel implements Serializable {
 
   private final String id;
 

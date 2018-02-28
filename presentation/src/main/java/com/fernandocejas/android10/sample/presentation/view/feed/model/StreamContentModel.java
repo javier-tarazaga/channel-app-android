@@ -1,4 +1,4 @@
-package com.fernandocejas.android10.sample.presentation.view.stream.model;
+package com.fernandocejas.android10.sample.presentation.view.feed.model;
 
 import java.util.List;
 

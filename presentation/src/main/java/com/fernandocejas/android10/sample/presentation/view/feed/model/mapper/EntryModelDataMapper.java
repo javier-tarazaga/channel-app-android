@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.android10.sample.presentation.view.stream.model.mapper;
+package com.fernandocejas.android10.sample.presentation.view.feed.model.mapper;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -21,7 +21,7 @@ import com.fernandocejas.android10.sample.data.feeds.entity.CategoryEntity;
 import com.fernandocejas.android10.sample.domain.feeds.Category;
 import com.fernandocejas.android10.sample.domain.feeds.Entry;
 import com.fernandocejas.android10.sample.presentation.internal.di.PerFragment;
-import com.fernandocejas.android10.sample.presentation.view.stream.model.EntryModel;
+import com.fernandocejas.android10.sample.presentation.view.feed.model.EntryModel;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;

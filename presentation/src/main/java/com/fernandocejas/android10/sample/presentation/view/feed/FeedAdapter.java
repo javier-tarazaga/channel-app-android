@@ -3,7 +3,7 @@
  *
  * @author Fernando Cejas (the android10 coder)
  */
-package com.fernandocejas.android10.sample.presentation.view.stream;
+package com.fernandocejas.android10.sample.presentation.view.feed;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -19,7 +19,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.fernandocejas.android10.sample.presentation.R;
-import com.fernandocejas.android10.sample.presentation.view.stream.model.EntryModel;
+import com.fernandocejas.android10.sample.presentation.view.feed.model.EntryModel;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -28,7 +28,7 @@ import javax.inject.Inject;
 /**
  * Adapter that manages a collection of {@link EntryModel}.
  */
-public class StreamAdapter extends RecyclerView.Adapter<StreamAdapter.EntryViewHolder> {
+public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.EntryViewHolder> {
 
   public interface OnItemClickListener {
     void onEntryItemClicked(EntryModel userModel);
@@ -39,7 +39,7 @@ public class StreamAdapter extends RecyclerView.Adapter<StreamAdapter.EntryViewH
 
   private OnItemClickListener onItemClickListener;
 
-  @Inject StreamAdapter(Context context) {
+  @Inject FeedAdapter(Context context) {
     this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     this.entryList = Collections.emptyList();
   }
@@ -66,8 +66,8 @@ public class StreamAdapter extends RecyclerView.Adapter<StreamAdapter.EntryViewH
 
     holder.itemView.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
-        if (StreamAdapter.this.onItemClickListener != null) {
-          StreamAdapter.this.onItemClickListener.onEntryItemClicked(entryModel);
+        if (FeedAdapter.this.onItemClickListener != null) {
+          FeedAdapter.this.onItemClickListener.onEntryItemClicked(entryModel);
         }
       }
     });

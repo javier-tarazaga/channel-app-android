@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.android10.sample.presentation.view.stream;
+package com.fernandocejas.android10.sample.presentation.view.feed;
 
 import android.support.annotation.NonNull;
 import com.fernandocejas.android10.sample.domain.exception.DefaultErrorBundle;
@@ -24,29 +24,29 @@ import com.fernandocejas.android10.sample.domain.interactor.DefaultObserver;
 import com.fernandocejas.android10.sample.presentation.exception.ErrorMessageFactory;
 import com.fernandocejas.android10.sample.presentation.internal.di.PerFragment;
 import com.fernandocejas.android10.sample.presentation.presenter.Presenter;
-import com.fernandocejas.android10.sample.presentation.view.stream.model.EntryModel;
-import com.fernandocejas.android10.sample.presentation.view.stream.model.StreamContentModel;
-import com.fernandocejas.android10.sample.presentation.view.stream.model.mapper.StreamModelDataMapper;
+import com.fernandocejas.android10.sample.presentation.view.feed.model.EntryModel;
+import com.fernandocejas.android10.sample.presentation.view.feed.model.StreamContentModel;
+import com.fernandocejas.android10.sample.presentation.view.feed.model.mapper.StreamModelDataMapper;
 import javax.inject.Inject;
 
 /**
  * {@link Presenter} that controls communication between views and models of the presentation
  * layer.
  */
-@PerFragment public class StreamPresenter implements Presenter {
+@PerFragment public class FeedPresenter implements Presenter {
 
-  private StreamView viewListView;
+  private FeedView viewListView;
 
   private final GetStreamWithContent getStreamWithContent;
   private final StreamModelDataMapper streamModelDataMapper;
 
   @Inject
-  public StreamPresenter(GetStreamWithContent getStreamWithContent, StreamModelDataMapper streamModelDataMapper) {
+  public FeedPresenter(GetStreamWithContent getStreamWithContent, StreamModelDataMapper streamModelDataMapper) {
     this.getStreamWithContent = getStreamWithContent;
     this.streamModelDataMapper = streamModelDataMapper;
   }
 
-  public void setView(@NonNull StreamView view) {
+  public void setView(@NonNull FeedView view) {
     this.viewListView = view;
   }
 
@@ -65,13 +65,13 @@ import javax.inject.Inject;
    * Initializes the presenter by start retrieving the user list.
    */
   public void initialize(String streamId) {
-    this.loadStreamList(streamId);
+    this.loadFeedEntries(streamId);
   }
 
   /**
-   * Loads all users.
+   * Loads all entries for the feed.
    */
-  private void loadStreamList(String streamId) {
+  private void loadFeedEntries(String streamId) {
     this.hideViewRetry();
     this.showViewLoading();
     this.getStream(streamId);
@@ -114,17 +114,17 @@ import javax.inject.Inject;
   private final class StreamContentObserver extends DefaultObserver<StreamContent> {
 
     @Override public void onComplete() {
-      StreamPresenter.this.hideViewLoading();
+      FeedPresenter.this.hideViewLoading();
     }
 
     @Override public void onError(Throwable e) {
-      StreamPresenter.this.hideViewLoading();
-      StreamPresenter.this.showErrorMessage(new DefaultErrorBundle((Exception) e));
-      StreamPresenter.this.showViewRetry();
+      FeedPresenter.this.hideViewLoading();
+      FeedPresenter.this.showErrorMessage(new DefaultErrorBundle((Exception) e));
+      FeedPresenter.this.showViewRetry();
     }
 
     @Override public void onNext(StreamContent streamContent) {
-      StreamPresenter.this.showStreamInView(streamContent);
+      FeedPresenter.this.showStreamInView(streamContent);
     }
   }
 }

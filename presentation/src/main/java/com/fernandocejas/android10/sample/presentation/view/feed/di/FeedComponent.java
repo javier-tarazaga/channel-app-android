@@ -13,19 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.android10.sample.presentation.view.stream.di;
+package com.fernandocejas.android10.sample.presentation.view.feed.di;
 
 import com.fernandocejas.android10.sample.presentation.internal.di.PerFragment;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.ApplicationComponent;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.FragmentComponent;
-import com.fernandocejas.android10.sample.presentation.view.stream.StreamFragment;
+import com.fernandocejas.android10.sample.presentation.view.feed.FeedFragment;
 import dagger.Component;
 
 /**
  * A scope {@link PerFragment} component.
- * Injects stream specific Fragments.
+ * Injects feed specific Fragments.
  */
-@PerFragment @Component(dependencies = ApplicationComponent.class, modules = { StreamModule.class })
-public interface StreamComponent extends FragmentComponent {
-  void inject(StreamFragment streamListFragment);
+@PerFragment @Component(dependencies = ApplicationComponent.class, modules = { FeedModule.class })
+public interface FeedComponent extends FragmentComponent {
+  void inject(FeedFragment streamListFragment);
 }

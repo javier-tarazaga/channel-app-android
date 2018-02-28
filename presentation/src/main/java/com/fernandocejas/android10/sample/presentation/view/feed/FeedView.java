@@ -3,17 +3,17 @@
  *
  * @author Fernando Cejas (the android10 coder)
  */
-package com.fernandocejas.android10.sample.presentation.view.stream;
+package com.fernandocejas.android10.sample.presentation.view.feed;
 
 import com.fernandocejas.android10.sample.presentation.view.LoadDataView;
-import com.fernandocejas.android10.sample.presentation.view.stream.model.EntryModel;
+import com.fernandocejas.android10.sample.presentation.view.feed.model.EntryModel;
 import java.util.List;
 
 /**
  * Interface representing a View in a model view presenter (MVP) pattern.
  * In this case is used as a view representing a list of {@link EntryModel}.
  */
-public interface StreamView extends LoadDataView {
+public interface FeedView extends LoadDataView {
 
   /**
    * Render an entry list in the UI.

@@ -22,7 +22,6 @@ import com.fernandocejas.android10.sample.presentation.model.UserModel;
 import com.fernandocejas.android10.sample.presentation.presenter.UserDetailsPresenter;
 import com.fernandocejas.android10.sample.presentation.view.BaseFragment;
 import com.fernandocejas.android10.sample.presentation.view.UserDetailsView;
-import com.fernandocejas.android10.sample.presentation.view.component.AutoLoadImageView;
 import com.fernandocejas.android10.sample.utils.Preconditions;
 import javax.inject.Inject;
 
@@ -34,7 +33,6 @@ public class UserDetailsFragment extends BaseFragment implements UserDetailsView
 
   @Inject UserDetailsPresenter userDetailsPresenter;
 
-  @BindView(R.id.iv_cover) AutoLoadImageView iv_cover;
   @BindView(R.id.tv_fullname) TextView tv_fullname;
   @BindView(R.id.tv_email) TextView tv_email;
   @BindView(R.id.tv_followers) TextView tv_followers;
@@ -99,7 +97,6 @@ public class UserDetailsFragment extends BaseFragment implements UserDetailsView
 
   @Override public void renderUser(UserModel user) {
     if (user != null) {
-      this.iv_cover.setImageUrl(user.getCoverUrl());
       this.tv_fullname.setText(user.getFullName());
       this.tv_email.setText(user.getEmail());
       this.tv_followers.setText(String.valueOf(user.getFollowers()));

@@ -3,7 +3,7 @@
  *
  * @author Fernando Cejas (the android10 coder)
  */
-package com.fernandocejas.android10.sample.presentation.view.stream;
+package com.fernandocejas.android10.sample.presentation.view.feed;
 
 import android.app.Activity;
 import android.content.Context;
@@ -20,10 +20,10 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import com.fernandocejas.android10.sample.presentation.R;
 import com.fernandocejas.android10.sample.presentation.view.BaseFragment;
+import com.fernandocejas.android10.sample.presentation.view.feed.di.FeedComponent;
 import com.fernandocejas.android10.sample.presentation.view.main.drawer.FeedModel;
-import com.fernandocejas.android10.sample.presentation.view.stream.di.DaggerStreamComponent;
-import com.fernandocejas.android10.sample.presentation.view.stream.di.StreamComponent;
-import com.fernandocejas.android10.sample.presentation.view.stream.model.EntryModel;
+import com.fernandocejas.android10.sample.presentation.view.feed.di.DaggerFeedComponent;
+import com.fernandocejas.android10.sample.presentation.view.feed.model.EntryModel;
 import com.fernandocejas.android10.sample.utils.Preconditions;
 import java.util.List;
 import javax.inject.Inject;
@@ -31,59 +31,59 @@ import javax.inject.Inject;
 /**
  * Fragment that shows a stream.
  */
-public class StreamFragment extends BaseFragment implements StreamView {
+public class FeedFragment extends BaseFragment implements FeedView {
 
   private static final String PARAM_FEED_MODEL = "param_feed_model";
 
-  public static StreamFragment newInstance(FeedModel feedModel) {
-    final StreamFragment streamFragment = new StreamFragment();
+  public static FeedFragment newInstance(FeedModel feedModel) {
+    final FeedFragment feedFragment = new FeedFragment();
     final Bundle arguments = new Bundle();
     arguments.putParcelable(PARAM_FEED_MODEL, feedModel);
-    streamFragment.setArguments(arguments);
+    feedFragment.setArguments(arguments);
 
-    return streamFragment;
+    return feedFragment;
   }
 
   /**
    * Interface for listening stream events.
    */
-  public interface StreamListListener {
+  public interface FeedListListener {
     void onEntryClicked(final EntryModel entryModel);
   }
 
-  @Inject StreamPresenter streamPresenter;
-  @Inject StreamAdapter streamAdapter;
+  @Inject FeedPresenter feedPresenter;
+  @Inject FeedAdapter feedAdapter;
 
   @BindView(R.id.rv_entries) RecyclerView rv_entries;
   @BindView(R.id.rl_progress) RelativeLayout rl_progress;
   @BindView(R.id.rl_retry) RelativeLayout rl_retry;
   @BindView(R.id.bt_retry) Button bt_retry;
 
-  private StreamListListener streamListListener;
+  private FeedListListener feedListListener;
   private Unbinder viewUnbinder;
 
-  public StreamFragment() {
+  public FeedFragment() {
     setRetainInstance(true);
   }
 
   @Override public void onAttach(Activity activity) {
     super.onAttach(activity);
-    if (activity instanceof StreamListListener) {
-      this.streamListListener = (StreamListListener) activity;
+    if (activity instanceof FeedListListener) {
+      this.feedListListener = (FeedListListener) activity;
     }
   }
 
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    StreamComponent streamComponent =
-        DaggerStreamComponent.builder().applicationComponent(getApplicationComponent()).build();
+    FeedComponent feedComponent =
+        DaggerFeedComponent.builder().applicationComponent(getApplicationComponent()).build();
 
-    streamComponent.inject(this);
+    feedComponent.inject(this);
   }
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    final View fragmentView = inflater.inflate(R.layout.fragment_stream, container, false);
+    final View fragmentView = inflater.inflate(R.layout.fragment_feed, container, false);
     viewUnbinder = ButterKnife.bind(this, fragmentView);
     setupRecyclerView();
     return fragmentView;
@@ -91,7 +91,7 @@ public class StreamFragment extends BaseFragment implements StreamView {
 
   @Override public void onViewCreated(View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    this.streamPresenter.setView(this);
+    this.feedPresenter.setView(this);
     if (savedInstanceState == null) {
       this.loadStream();
     }
@@ -99,12 +99,12 @@ public class StreamFragment extends BaseFragment implements StreamView {
 
   @Override public void onResume() {
     super.onResume();
-    this.streamPresenter.resume();
+    this.feedPresenter.resume();
   }
 
   @Override public void onPause() {
     super.onPause();
-    this.streamPresenter.pause();
+    this.feedPresenter.pause();
   }
 
   @Override public void onDestroyView() {
@@ -115,12 +115,12 @@ public class StreamFragment extends BaseFragment implements StreamView {
 
   @Override public void onDestroy() {
     super.onDestroy();
-    this.streamPresenter.destroy();
+    this.feedPresenter.destroy();
   }
 
   @Override public void onDetach() {
     super.onDetach();
-    this.streamListListener = null;
+    this.feedListListener = null;
   }
 
   @Override public void showLoading() {
@@ -143,13 +143,13 @@ public class StreamFragment extends BaseFragment implements StreamView {
 
   @Override public void renderUserList(List<EntryModel> entryModelList) {
     if (entryModelList != null) {
-      this.streamAdapter.setEntryList(entryModelList);
+      this.feedAdapter.setEntryList(entryModelList);
     }
   }
 
   @Override public void viewEntry(EntryModel entryModel) {
-    if (this.streamListListener != null) {
-      this.streamListListener.onEntryClicked(entryModel);
+    if (this.feedListListener != null) {
+      this.feedListListener.onEntryClicked(entryModel);
     }
   }
 
@@ -162,40 +162,40 @@ public class StreamFragment extends BaseFragment implements StreamView {
   }
 
   private void setupRecyclerView() {
-    this.streamAdapter.setOnItemClickListener(onItemClickListener);
+    this.feedAdapter.setOnItemClickListener(onItemClickListener);
 
-    StreamLayoutManager streamLayoutManager = new StreamLayoutManager(context());
-    this.rv_entries.setLayoutManager(streamLayoutManager);
-    this.rv_entries.setAdapter(streamAdapter);
-    StreamItemDecoration streamItemDecoration =
-        new StreamItemDecoration((int) getResources().getDimension(R.dimen.activity_vertical_margin));
-    this.rv_entries.addItemDecoration(streamItemDecoration);
+    FeedLayoutManager feedLayoutManager = new FeedLayoutManager(context());
+    this.rv_entries.setLayoutManager(feedLayoutManager);
+    this.rv_entries.setAdapter(feedAdapter);
+    FeedItemDecoration feedItemDecoration =
+        new FeedItemDecoration((int) getResources().getDimension(R.dimen.activity_vertical_margin));
+    this.rv_entries.addItemDecoration(feedItemDecoration);
   }
 
   /**
    * Loads the stream for the given subscription.
    */
   private void loadStream() {
-    this.streamPresenter.initialize(currentSubscriptionModel().getId());
+    this.feedPresenter.initialize(currentFeedModel().getId());
   }
 
   /**
-   * Get current user id from fragments arguments.
+   * Get current feed from fragments arguments.
    */
-  private FeedModel currentSubscriptionModel() {
+  private FeedModel currentFeedModel() {
     final Bundle arguments = getArguments();
     Preconditions.checkNotNull(arguments, "Fragment arguments cannot be null");
     return arguments.getParcelable(PARAM_FEED_MODEL);
   }
 
   @OnClick(R.id.bt_retry) void onButtonRetryClick() {
-    StreamFragment.this.loadStream();
+    FeedFragment.this.loadStream();
   }
 
-  private StreamAdapter.OnItemClickListener onItemClickListener = new StreamAdapter.OnItemClickListener() {
+  private FeedAdapter.OnItemClickListener onItemClickListener = new FeedAdapter.OnItemClickListener() {
     @Override public void onEntryItemClicked(EntryModel entryModel) {
-      if (StreamFragment.this.streamPresenter != null && entryModel != null) {
-        StreamFragment.this.streamPresenter.onEntryClicked(entryModel);
+      if (FeedFragment.this.feedPresenter != null && entryModel != null) {
+        FeedFragment.this.feedPresenter.onEntryClicked(entryModel);
       }
     }
   };
