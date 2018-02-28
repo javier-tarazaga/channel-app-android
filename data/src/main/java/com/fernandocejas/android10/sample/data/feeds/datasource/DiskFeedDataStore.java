@@ -17,6 +17,7 @@ package com.fernandocejas.android10.sample.data.feeds.datasource;
 
 import com.fernandocejas.android10.sample.data.feeds.cache.CategoryCache;
 import com.fernandocejas.android10.sample.data.feeds.entity.CategoryEntity;
+import com.fernandocejas.android10.sample.data.feeds.entity.SubscriptionEntity;
 import io.reactivex.Observable;
 import java.util.List;
 
@@ -43,5 +44,10 @@ class DiskFeedDataStore implements FeedDataStore {
 
   @Override public Observable<CategoryEntity> categoryEntity(String categoryId) {
     return this.categoryCache.get(categoryId);
+  }
+
+  @Override public Observable<List<SubscriptionEntity>> subscriptions() {
+    //TODO: implement simple cache for storing/retrieving collections of users.
+    throw new UnsupportedOperationException("Operation is not available!!!");
   }
 }

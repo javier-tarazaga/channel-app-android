@@ -16,7 +16,9 @@
 package com.fernandocejas.android10.sample.data.feeds.datasource;
 
 import com.fernandocejas.android10.sample.data.feeds.entity.CategoryEntity;
+import com.fernandocejas.android10.sample.data.feeds.entity.SubscriptionEntity;
 import com.fernandocejas.android10.sample.domain.feeds.Category;
+import com.fernandocejas.android10.sample.domain.feeds.Subscription;
 import io.reactivex.Observable;
 import java.util.List;
 
@@ -36,4 +38,9 @@ public interface FeedDataStore {
    * @param categoryId The id used to retrieve category data.
    */
   Observable<CategoryEntity> categoryEntity(final String categoryId);
+
+  /**
+   * Get an {@link Observable} which will emit a List of {@link Subscription}.
+   */
+  Observable<List<SubscriptionEntity>> subscriptions();
 }

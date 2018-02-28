@@ -1,5 +1,6 @@
 package com.fernandocejas.android10.sample.data.feeds;
 
+import com.fernandocejas.android10.sample.data.feeds.datasource.FeedDataStoreFactory;
 import com.fernandocejas.android10.sample.data.feeds.entity.CategoryEntity;
 import com.fernandocejas.android10.sample.data.feeds.entity.SubscriptionEntity;
 import com.fernandocejas.android10.sample.data.feeds.entity.mapper.CategoryEntityDataMapper;
@@ -19,21 +20,26 @@ import javax.inject.Singleton;
  */
 @Singleton public class FeedDataRepository implements FeedRepository {
 
+  private final FeedDataStoreFactory dataStoreFactory;
   private final CategoryEntityDataMapper categoryEntityDataMapper;
   private final SubscriptionEntityDataMapper subscriptionEntityDataMapper;
 
-  @Inject public FeedDataRepository(CategoryEntityDataMapper categoryEntityDataMapper,
+  @Inject
+  public FeedDataRepository(FeedDataStoreFactory dataStoreFactory, CategoryEntityDataMapper categoryEntityDataMapper,
       SubscriptionEntityDataMapper subscriptionEntityDataMapper) {
+    this.dataStoreFactory = dataStoreFactory;
     this.categoryEntityDataMapper = categoryEntityDataMapper;
     this.subscriptionEntityDataMapper = subscriptionEntityDataMapper;
   }
 
   @Override public Observable<List<Category>> categories() {
-    return getCategories().map(new Function<List<CategoryEntity>, List<Category>>() {
-      @Override public List<Category> apply(List<CategoryEntity> categoryEntities) throws Exception {
-        return categoryEntityDataMapper.transform(categoryEntities);
-      }
-    });
+    return this.dataStoreFactory.createCloudDataStore()
+        .categoriesEntityList()
+        .map(new Function<List<CategoryEntity>, List<Category>>() {
+          @Override public List<Category> apply(List<CategoryEntity> categoryEntities) throws Exception {
+            return categoryEntityDataMapper.transform(categoryEntities);
+          }
+        });
   }
 
   @Override public Observable<Category> category(int categoryId) {
@@ -41,11 +47,13 @@ import javax.inject.Singleton;
   }
 
   @Override public Observable<List<Subscription>> subscriptions() {
-    return getSubscriptions().map(new Function<List<SubscriptionEntity>, List<Subscription>>() {
-      @Override public List<Subscription> apply(List<SubscriptionEntity> subscriptionEntities) throws Exception {
-        return subscriptionEntityDataMapper.transform(subscriptionEntities);
-      }
-    });
+    return this.dataStoreFactory.createCloudDataStore()
+        .subscriptions()
+        .map(new Function<List<SubscriptionEntity>, List<Subscription>>() {
+          @Override public List<Subscription> apply(List<SubscriptionEntity> subscriptionEntities) throws Exception {
+            return subscriptionEntityDataMapper.transform(subscriptionEntities);
+          }
+        });
   }
 
   private Observable<List<CategoryEntity>> getCategories() {

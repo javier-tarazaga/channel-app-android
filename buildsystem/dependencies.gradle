@@ -25,6 +25,7 @@ ext {
   javaxAnnotationVersion = '1.0'
   javaxInjectVersion = '1'
   gsonVersion = '2.3'
+  retrofitVersion = '2.3.0'
   okHttpVersion = '2.5.0'
 
 
@@ -66,15 +67,18 @@ ext {
                             mockito: "org.mockito:mockito-core:${mockitoVersion}",
                             assertj: "org.assertj:assertj-core:${assertJVersion}"]
 
-  dataDependencies = [daggerCompiler    : "com.google.dagger:dagger-compiler:${daggerVersion}",
-                      dagger            : "com.google.dagger:dagger:${daggerVersion}",
-                      okHttp            : "com.squareup.okhttp:okhttp:${okHttpVersion}",
-                      gson              : "com.google.code.gson:gson:${gsonVersion}",
-                      rxJava            : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
-                      rxAndroid         : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
-                      javaxAnnotation   : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
-                      javaxInject       : "javax.inject:javax.inject:${javaxInjectVersion}",
-                      androidAnnotations: "com.android.support:support-annotations:${androidSupportVersion}"]
+  dataDependencies = [daggerCompiler       : "com.google.dagger:dagger-compiler:${daggerVersion}",
+                      dagger               : "com.google.dagger:dagger:${daggerVersion}",
+                      retrofit             : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+                      retrofitGsonConverter: "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+                      retrofitRxJavaAdapter: "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
+                      okHttp               : "com.squareup.okhttp:okhttp:${okHttpVersion}",
+                      gson                 : "com.google.code.gson:gson:${gsonVersion}",
+                      rxJava               : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+                      rxAndroid            : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+                      javaxAnnotation      : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+                      javaxInject          : "javax.inject:javax.inject:${javaxInjectVersion}",
+                      androidAnnotations   : "com.android.support:support-annotations:${androidSupportVersion}"]
 
   dataTestDependencies = [junit      : "junit:junit:${jUnitVersion}",
                           assertj    : "org.assertj:assertj-core:${assertJVersion}",
