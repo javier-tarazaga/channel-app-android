@@ -55,7 +55,7 @@ public class FeedFragment extends BaseFragment implements FeedView {
   @Inject FeedPresenter feedPresenter;
   @Inject FeedAdapter feedAdapter;
 
-  @BindView(R.id.tb_feed_entry) Toolbar tb_feed_entry;
+  @BindView(R.id.tb_generic) Toolbar tb_feed_entry;
   @BindView(R.id.rv_entries) RecyclerView rv_entries;
   @BindView(R.id.rl_progress) RelativeLayout rl_progress;
   @BindView(R.id.rl_retry) RelativeLayout rl_retry;

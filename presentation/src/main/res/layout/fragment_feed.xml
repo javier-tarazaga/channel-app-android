@@ -5,28 +5,25 @@
     android:background="@color/colorBackground"
     >
 
-  <android.support.v7.widget.Toolbar
-      android:id="@+id/tb_feed_entry"
-      android:elevation="2dp"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="@color/colorBackground"
-      />
-
-  <android.support.v7.widget.RecyclerView
-      android:layout_below="@id/tb_feed_entry"
-      android:id="@+id/rv_entries"
-      android:scrollbars="vertical"
+  <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      />
+      android:orientation="vertical"
+      >
 
-  <include
-      layout="@layout/view_progress"
-      />
+    <include layout="@layout/view_app_bar"/>
 
-  <include
-      layout="@layout/view_retry"
-      />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_entries"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+  </LinearLayout>
+
+
+  <include layout="@layout/view_progress"/>
+
+  <include layout="@layout/view_retry"/>
 
 </RelativeLayout>

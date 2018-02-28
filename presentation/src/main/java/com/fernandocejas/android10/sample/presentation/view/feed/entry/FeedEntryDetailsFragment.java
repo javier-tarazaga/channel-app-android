@@ -45,7 +45,7 @@ public class FeedEntryDetailsFragment extends BaseFragment implements FeedEntryD
 
   @Inject FeedEntryDetailsPresenter presenter;
 
-  @BindView(R.id.tb_feed_entry) Toolbar tb_feed_entry;
+  @BindView(R.id.tb_generic) Toolbar tb_feed_entry;
   @BindView(R.id.iv_entry) ImageView iv_entry;
   @BindView(R.id.tv_title) TextView tv_title;
   @BindView(R.id.tv_content) TextView tv_content;

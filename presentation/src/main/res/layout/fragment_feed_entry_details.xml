@@ -7,13 +7,7 @@
     android:orientation="vertical"
     >
 
-  <android.support.v7.widget.Toolbar
-      android:id="@+id/tb_feed_entry"
-      android:elevation="2dp"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="@color/colorBackground"
-      />
+  <include layout="@layout/view_app_bar"/>
 
   <ScrollView
       android:layout_width="match_parent"
