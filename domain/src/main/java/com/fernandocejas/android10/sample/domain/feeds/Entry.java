@@ -7,7 +7,7 @@ public class Entry {
   private final String id;
 
   private String title;
-  private Summary summary;
+  private Content content;
   private Visual visual;
   private List<Thumbnail> thumbnailList;
 
@@ -27,12 +27,12 @@ public class Entry {
     this.title = title;
   }
 
-  @Nullable public Summary getSummary() {
-    return summary;
+  @Nullable public Content getContent() {
+    return content;
   }
 
-  public void setSummary(Summary summary) {
-    this.summary = summary;
+  public void setContent(Content content) {
+    this.content = content;
   }
 
   @Nullable public Visual getVisual() {
@@ -51,10 +51,10 @@ public class Entry {
     this.thumbnailList = thumbnailList;
   }
 
-  public static class Summary {
+  public static class Content {
     private final String content;
 
-    public Summary(String content) {
+    public Content(String content) {
       this.content = content;
     }
 

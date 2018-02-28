@@ -45,9 +45,10 @@ import javax.inject.Inject;
     EntryModel entryModel = null;
     if (entry != null) {
       entryModel = new EntryModel(entry.getId());
-      entryModel.setTitle(entry.getTitle());
-      entryModel.setImageUrl(entry.getVisual() != null ? entry.getVisual().getUrl() : null);
-      entryModel.setSummary(entry.getSummary() != null ? entry.getSummary().getContent() : null);
+      entryModel.setTitle(entry.getTitle() != null ? entry.getTitle() : "");
+      entryModel.setImageUrl(entry.getVisual() != null ? entry.getVisual().getUrl() : "");
+      entryModel.setSummary(entry.getContent() != null ? entry.getContent().getContent() : "");
+      entryModel.setContentInHtml(entry.getContent() != null ? entry.getContent().getContent() : "");
     }
     return entryModel;
   }

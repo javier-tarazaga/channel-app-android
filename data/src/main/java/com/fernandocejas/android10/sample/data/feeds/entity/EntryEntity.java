@@ -8,7 +8,8 @@ public class EntryEntity {
   private final String id;
 
   private String title;
-  private SummaryEntity summary;
+  private ContentEntity content;
+  private ContentEntity summary;
   private VisualEntity visual;
   @SerializedName("thumbnail") private List<ThumbnailEntity> thumbnailEntityList;
 
@@ -28,11 +29,19 @@ public class EntryEntity {
     this.title = title;
   }
 
-  @Nullable public SummaryEntity getSummary() {
+  @Nullable public ContentEntity getContent() {
+    return content;
+  }
+
+  public void setContent(ContentEntity content) {
+    this.content = content;
+  }
+
+  @Nullable public ContentEntity getSummary() {
     return summary;
   }
 
-  public void setSummary(SummaryEntity summary) {
+  public void setSummary(ContentEntity summary) {
     this.summary = summary;
   }
 
@@ -52,10 +61,10 @@ public class EntryEntity {
     this.thumbnailEntityList = thumbnailEntityList;
   }
 
-  public static class SummaryEntity {
+  public static class ContentEntity {
     private final String content;
 
-    public SummaryEntity(String content) {
+    public ContentEntity(String content) {
       this.content = content;
     }
 

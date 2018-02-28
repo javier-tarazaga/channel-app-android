@@ -24,6 +24,7 @@ import com.fernandocejas.android10.sample.presentation.view.BaseFragment;
 import com.fernandocejas.android10.sample.presentation.view.feed.entry.di.DaggerFeedEntryDetailsComponent;
 import com.fernandocejas.android10.sample.presentation.view.feed.entry.di.FeedEntryDetailsComponent;
 import com.fernandocejas.android10.sample.presentation.view.feed.model.EntryModel;
+import com.fernandocejas.android10.sample.presentation.view.widget.HTMLTextView;
 import com.fernandocejas.android10.sample.utils.Preconditions;
 import javax.inject.Inject;
 
@@ -48,7 +49,7 @@ public class FeedEntryDetailsFragment extends BaseFragment implements FeedEntryD
   @BindView(R.id.tb_generic) Toolbar tb_feed_entry;
   @BindView(R.id.iv_entry) ImageView iv_entry;
   @BindView(R.id.tv_title) TextView tv_title;
-  @BindView(R.id.tv_content) TextView tv_content;
+  @BindView(R.id.tv_html_content) HTMLTextView tv_html_content;
 
   private Unbinder viewUnbinder;
 
@@ -112,6 +113,7 @@ public class FeedEntryDetailsFragment extends BaseFragment implements FeedEntryD
         .into(this.iv_entry);
 
     this.tv_title.setText(entryModel.getTitle());
+    this.tv_html_content.setText(entryModel.getContentInHtml());
   }
 
   private void setupView() {

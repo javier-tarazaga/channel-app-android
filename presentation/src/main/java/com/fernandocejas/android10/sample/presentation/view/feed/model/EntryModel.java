@@ -15,7 +15,7 @@
  */
 package com.fernandocejas.android10.sample.presentation.view.feed.model;
 
-import android.support.annotation.Nullable;
+import android.support.annotation.NonNull;
 import java.io.Serializable;
 
 /**
@@ -28,16 +28,17 @@ public class EntryModel implements Serializable {
   private String title;
   private String summary;
   private String imageUrl;
+  private String contentInHtml;
 
   public EntryModel(String id) {
     this.id = id;
   }
 
-  public String getId() {
+  @NonNull public String getId() {
     return id;
   }
 
-  @Nullable public String getTitle() {
+  @NonNull public String getTitle() {
     return title;
   }
 
@@ -45,7 +46,7 @@ public class EntryModel implements Serializable {
     this.title = title;
   }
 
-  @Nullable public String getSummary() {
+  @NonNull public String getSummary() {
     return summary;
   }
 
@@ -53,11 +54,19 @@ public class EntryModel implements Serializable {
     this.summary = summary;
   }
 
-  @Nullable public String getImageUrl() {
+  @NonNull public String getImageUrl() {
     return imageUrl;
   }
 
   public void setImageUrl(String imageUrl) {
     this.imageUrl = imageUrl;
+  }
+
+  @NonNull public String getContentInHtml() {
+    return contentInHtml;
+  }
+
+  public void setContentInHtml(String contentInHtml) {
+    this.contentInHtml = contentInHtml;
   }
 }

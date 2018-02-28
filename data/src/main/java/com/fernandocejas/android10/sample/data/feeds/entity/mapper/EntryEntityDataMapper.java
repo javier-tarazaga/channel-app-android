@@ -44,7 +44,7 @@ import javax.inject.Singleton;
     if (entryEntity != null) {
       entry = new Entry(entryEntity.getId());
       entry.setTitle(entryEntity.getTitle());
-      entry.setSummary(transform(entryEntity.getSummary()));
+      entry.setContent(transform(entryEntity.getContent()));
       entry.setVisual(transform(entryEntity.getVisual()));
       entry.setThumbnailList(transformThumbnailList(entryEntity.getThumbnailEntityList()));
     }
@@ -72,13 +72,13 @@ import javax.inject.Singleton;
     return entryList;
   }
 
-  @Nullable private Entry.Summary transform(EntryEntity.SummaryEntity summaryEntity) {
-    Entry.Summary summary = null;
-    if (summaryEntity != null) {
-      summary = new Entry.Summary(summaryEntity.getContent());
+  @Nullable private Entry.Content transform(EntryEntity.ContentEntity contentEntity) {
+    Entry.Content content = null;
+    if (contentEntity != null) {
+      content = new Entry.Content(contentEntity.getContent());
     }
 
-    return summary;
+    return content;
   }
 
   @Nullable private Entry.Visual transform(EntryEntity.VisualEntity visualEntity) {
