@@ -6,7 +6,7 @@ public class Entry {
   private final String id;
 
   private String title;
-  private String summary;
+  private Summary summary;
   private List<Thumbnail> thumbnailList;
 
   public Entry(String id) {
@@ -25,11 +25,11 @@ public class Entry {
     this.title = title;
   }
 
-  public String getSummary() {
+  public Summary getSummary() {
     return summary;
   }
 
-  public void setSummary(String summary) {
+  public void setSummary(Summary summary) {
     this.summary = summary;
   }
 
@@ -39,6 +39,18 @@ public class Entry {
 
   public void setThumbnailList(List<Thumbnail> thumbnailList) {
     this.thumbnailList = thumbnailList;
+  }
+
+  public static class Summary {
+    private final String content;
+
+    public Summary(String content) {
+      this.content = content;
+    }
+
+    public String getContent() {
+      return content;
+    }
   }
 
   public static class Thumbnail {

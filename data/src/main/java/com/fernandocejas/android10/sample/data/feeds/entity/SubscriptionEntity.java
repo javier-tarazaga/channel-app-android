@@ -11,8 +11,7 @@ public class SubscriptionEntity {
   private List<CategoryEntity> categories;
   private List<String> topics;
 
-  @SerializedName("sortId")
-  private String sortId;
+  @SerializedName("sortId") private String sortId;
 
   private String iconUrl;
   private String visualUrl;

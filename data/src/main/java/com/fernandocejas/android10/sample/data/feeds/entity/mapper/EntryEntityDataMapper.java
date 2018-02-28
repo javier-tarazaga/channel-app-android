@@ -17,9 +17,7 @@ package com.fernandocejas.android10.sample.data.feeds.entity.mapper;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import com.fernandocejas.android10.sample.data.feeds.entity.CategoryEntity;
 import com.fernandocejas.android10.sample.data.feeds.entity.EntryEntity;
-import com.fernandocejas.android10.sample.domain.feeds.Category;
 import com.fernandocejas.android10.sample.domain.feeds.Entry;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +25,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * Mapper class used to transform {@link CategoryEntity} (in the data layer) to {@link Category} in the
+ * Mapper class used to transform {@link EntryEntity} (in the data layer) to {@link Entry} in the
  * domain layer.
  */
 @Singleton public class EntryEntityDataMapper {
@@ -46,7 +44,7 @@ import javax.inject.Singleton;
     if (entryEntity != null) {
       entry = new Entry(entryEntity.getId());
       entry.setTitle(entryEntity.getTitle());
-      entry.setSummary(entryEntity.getSummary());
+      entry.setSummary(transform(entryEntity.getSummary()));
       entry.setThumbnailList(transformThumbnailList(entryEntity.getThumbnailEntityList()));
     }
     return entry;
@@ -71,6 +69,15 @@ import javax.inject.Singleton;
     }
 
     return entryList;
+  }
+
+  @Nullable private Entry.Summary transform(EntryEntity.SummaryEntity summaryEntity) {
+    Entry.Summary summary = null;
+    if (summaryEntity != null) {
+      summary = new Entry.Summary(summaryEntity.getContent());
+    }
+
+    return summary;
   }
 
   @Nullable private Entry.Thumbnail transform(EntryEntity.ThumbnailEntity thumbnailEntity) {

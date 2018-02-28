@@ -18,8 +18,8 @@ package com.fernandocejas.android10.sample.test.presenter;
 import android.content.Context;
 import com.fernandocejas.android10.sample.domain.interactor.GetUserList;
 import com.fernandocejas.android10.sample.presentation.mapper.UserModelDataMapper;
-import com.fernandocejas.android10.sample.presentation.view.feeds.UserListPresenter;
-import com.fernandocejas.android10.sample.presentation.view.feeds.UserListView;
+import com.fernandocejas.android10.sample.presentation.view.stream.StreamPresenter;
+import com.fernandocejas.android10.sample.presentation.view.stream.StreamView;
 import io.reactivex.observers.DisposableObserver;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,28 +34,28 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class UserListPresenterTest {
 
-  private UserListPresenter userListPresenter;
+  private StreamPresenter streamPresenter;
 
   @Mock private Context mockContext;
-  @Mock private UserListView mockUserListView;
+  @Mock private StreamView mockStreamView;
   @Mock private GetUserList mockGetUserList;
   @Mock private UserModelDataMapper mockUserModelDataMapper;
 
   @Before
   public void setUp() {
-    userListPresenter = new UserListPresenter(mockGetUserList, mockUserModelDataMapper);
-    userListPresenter.setView(mockUserListView);
+    streamPresenter = new StreamPresenter(mockGetUserList, mockUserModelDataMapper);
+    streamPresenter.setView(mockStreamView);
   }
 
   @Test
   @SuppressWarnings("unchecked")
   public void testUserListPresenterInitialize() {
-    given(mockUserListView.context()).willReturn(mockContext);
+    given(mockStreamView.context()).willReturn(mockContext);
 
-    userListPresenter.initialize();
+    streamPresenter.initialize();
 
-    verify(mockUserListView).hideRetry();
-    verify(mockUserListView).showLoading();
+    verify(mockStreamView).hideRetry();
+    verify(mockStreamView).showLoading();
     verify(mockGetUserList).execute(any(DisposableObserver.class), any(Void.class));
   }
 }

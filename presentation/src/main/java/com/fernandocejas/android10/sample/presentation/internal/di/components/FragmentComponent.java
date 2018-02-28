@@ -15,17 +15,17 @@
  */
 package com.fernandocejas.android10.sample.presentation.internal.di.components;
 
-import com.fernandocejas.android10.sample.presentation.internal.di.PerActivity;
-import com.fernandocejas.android10.sample.presentation.internal.di.modules.ActivityModule;
-import com.fernandocejas.android10.sample.presentation.internal.di.modules.UserModule;
-import com.fernandocejas.android10.sample.presentation.view.fragment.UserDetailsFragment;
+import com.fernandocejas.android10.sample.presentation.internal.di.PerFragment;
+import com.fernandocejas.android10.sample.presentation.internal.di.modules.FragmentModule;
 import dagger.Component;
 
 /**
- * A scope {@link com.fernandocejas.android10.sample.presentation.internal.di.PerActivity} component.
- * Injects user specific Fragments.
+ * A base component upon which fragment's components may depend.
+ * Fragment-level components should extend this component.
+ *
+ * Subtypes of PerFragment should be decorated with annotation:
+ * {@link PerFragment}
  */
-@PerActivity @Component(dependencies = ApplicationComponent.class, modules = { ActivityModule.class, UserModule.class })
-public interface UserComponent extends ActivityComponent {
-  void inject(UserDetailsFragment userDetailsFragment);
+@PerFragment @Component(dependencies = ApplicationComponent.class, modules = FragmentModule.class)
+public interface FragmentComponent {
 }

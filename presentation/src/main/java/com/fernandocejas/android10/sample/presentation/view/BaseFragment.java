@@ -7,7 +7,10 @@ package com.fernandocejas.android10.sample.presentation.view;
 
 import android.app.Fragment;
 import android.widget.Toast;
+import com.fernandocejas.android10.sample.presentation.AndroidApplication;
 import com.fernandocejas.android10.sample.presentation.internal.di.HasComponent;
+import com.fernandocejas.android10.sample.presentation.internal.di.components.ApplicationComponent;
+import com.fernandocejas.android10.sample.presentation.internal.di.modules.FragmentModule;
 
 /**
  * Base {@link android.app.Fragment} class for every fragment in this application.
@@ -28,5 +31,23 @@ public abstract class BaseFragment extends Fragment {
   @SuppressWarnings("unchecked")
   protected <C> C getComponent(Class<C> componentType) {
     return componentType.cast(((HasComponent<C>) getActivity()).getComponent());
+  }
+
+  /**
+   * Get the Main Application component for dependency injection.
+   *
+   * @return {@link ApplicationComponent}
+   */
+  protected ApplicationComponent getApplicationComponent() {
+    return ((AndroidApplication) getActivity().getApplication()).getApplicationComponent();
+  }
+
+  /**
+   * Get an Fragment module for dependency injection.
+   *
+   * @return {@link FragmentModule}
+   */
+  protected FragmentModule getFragmentModule() {
+    return new FragmentModule();
   }
 }

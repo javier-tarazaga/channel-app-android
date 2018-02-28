@@ -5,7 +5,7 @@ import java.util.List;
 public class StreamContent {
   private final String id;
   private String title;
-  private List<Entry> entryEntityList;
+  private List<Entry> entryList;
 
   public StreamContent(String id) {
     this.id = id;
@@ -23,11 +23,11 @@ public class StreamContent {
     this.title = title;
   }
 
-  public List<Entry> getEntryEntityList() {
-    return entryEntityList;
+  public List<Entry> getEntryList() {
+    return entryList;
   }
 
-  public void setEntryList(List<Entry> entryEntityList) {
-    this.entryEntityList = entryEntityList;
+  public void setEntryList(List<Entry> entryList) {
+    this.entryList = entryList;
   }
 }
