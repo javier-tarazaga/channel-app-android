@@ -2,6 +2,7 @@ package com.fernandocejas.android10.sample.presentation.view.main;
 
 import com.fernandocejas.android10.sample.presentation.view.LoadDataView;
 import com.fernandocejas.android10.sample.presentation.view.main.drawer.CategoryModel;
+import com.fernandocejas.android10.sample.presentation.view.main.drawer.FeedModel;
 import java.util.List;
 
 /**
@@ -10,4 +11,8 @@ import java.util.List;
  */
 public interface MainView extends LoadDataView {
   void renderCategoryList(List<CategoryModel> categoryModelsCollection);
+
+  void closeDrawer();
+
+  void renderSubscription(FeedModel feedModel);
 }

@@ -175,14 +175,21 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
       CategoryAdapter adapter = new CategoryAdapter(categoryModelsList);
       adapter.setOnArticleItemClickListener(new OnFeedItemClickListener() {
         @Override public boolean onFeedItemClick(FeedModel feedModel) {
-          MainActivity.this.drawerLayout.closeDrawers();
-          replaceFragment(R.id.fragment_container, FeedsFragment.newInstance(feedModel));
+          MainActivity.this.mainPresenter.subscriptionItemClicked(feedModel);
           return true;
         }
       });
 
       this.recyclerView.setAdapter(adapter);
     }
+  }
+
+  @Override public void closeDrawer() {
+    this.drawerLayout.closeDrawers();
+  }
+
+  @Override public void renderSubscription(FeedModel feedModel) {
+    replaceFragment(R.id.fragment_container, FeedsFragment.newInstance(feedModel));
   }
 
   private void initializeInjector() {

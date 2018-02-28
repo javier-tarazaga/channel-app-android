@@ -6,6 +6,7 @@ import com.fernandocejas.android10.sample.domain.feeds.interactors.GetCategoryLi
 import com.fernandocejas.android10.sample.domain.interactor.DefaultObserver;
 import com.fernandocejas.android10.sample.presentation.presenter.Presenter;
 import com.fernandocejas.android10.sample.presentation.view.main.drawer.CategoryModel;
+import com.fernandocejas.android10.sample.presentation.view.main.drawer.FeedModel;
 import com.fernandocejas.android10.sample.presentation.view.main.drawer.mapper.CategoryModelDataMapper;
 import java.util.List;
 import javax.inject.Inject;
@@ -41,6 +42,11 @@ public class MainPresenter implements Presenter {
 
   void initialize() {
     loadCategoryList();
+  }
+
+  void subscriptionItemClicked(FeedModel feedModel) {
+    this.mainView.closeDrawer();
+    this.mainView.renderSubscription(feedModel);
   }
 
   private void loadCategoryList() {
