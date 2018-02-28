@@ -83,8 +83,10 @@ dependencies {
   }
   implementation presentationDependencies.designLibrary
   implementation presentationDependencies.constraintLayout
-  annotationProcessor presentationDependencies.daggerCompiler
+  implementation presentationDependencies.glide
+  annotationProcessor presentationDependencies.glideCompiler
   implementation presentationDependencies.dagger
+  annotationProcessor presentationDependencies.daggerCompiler
   implementation presentationDependencies.butterKnife
   annotationProcessor presentationDependencies.butterKnifeCompiler
   implementation presentationDependencies.recyclerView

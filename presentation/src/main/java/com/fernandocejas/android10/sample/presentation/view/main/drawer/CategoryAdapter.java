@@ -9,31 +9,25 @@ import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup;
 import java.util.List;
 
 public class CategoryAdapter extends ExpandableRecyclerViewAdapter<CategoryViewHolder, FeedViewHolder> {
-
-  public OnFeedItemClickListener listener;
+  private OnFeedItemClickListener listener;
 
   public CategoryAdapter(List<? extends ExpandableGroup> groups) {
     super(groups);
   }
 
-  @Override
-  public CategoryViewHolder onCreateGroupViewHolder(ViewGroup parent, int viewType) {
-    View view = LayoutInflater.from(parent.getContext())
-        .inflate(R.layout.row_item_category, parent, false);
+  @Override public CategoryViewHolder onCreateGroupViewHolder(ViewGroup parent, int viewType) {
+    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_item_category, parent, false);
     return new CategoryViewHolder(view);
   }
 
-  @Override
-  public FeedViewHolder onCreateChildViewHolder(final ViewGroup parent, int viewType) {
-    View view = LayoutInflater.from(parent.getContext())
-        .inflate(R.layout.row_item_subscription, parent, false);
+  @Override public FeedViewHolder onCreateChildViewHolder(final ViewGroup parent, int viewType) {
+    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_item_subscription, parent, false);
 
     return new FeedViewHolder(view);
   }
 
   @Override
-  public void onBindChildViewHolder(FeedViewHolder holder, int flatPosition,
-      ExpandableGroup group, int childIndex) {
+  public void onBindChildViewHolder(FeedViewHolder holder, int flatPosition, ExpandableGroup group, int childIndex) {
 
     final FeedModel feedModel = ((CategoryModel) group).getItems().get(childIndex);
     holder.setSubscriptionName(feedModel.getTitle());
@@ -50,9 +44,7 @@ public class CategoryAdapter extends ExpandableRecyclerViewAdapter<CategoryViewH
     });
   }
 
-  @Override
-  public void onBindGroupViewHolder(CategoryViewHolder holder, int flatPosition,
-      ExpandableGroup group) {
+  @Override public void onBindGroupViewHolder(CategoryViewHolder holder, int flatPosition, ExpandableGroup group) {
 
     holder.setGenreTitle(group);
   }

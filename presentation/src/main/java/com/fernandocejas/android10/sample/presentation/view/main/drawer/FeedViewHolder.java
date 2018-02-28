@@ -5,6 +5,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.bumptech.glide.Glide;
 import com.fernandocejas.android10.sample.presentation.R;
 import com.thoughtbot.expandablerecyclerview.viewholders.ChildViewHolder;
 
@@ -27,8 +28,7 @@ public class FeedViewHolder extends ChildViewHolder implements View.OnClickListe
   }
 
   public void setSubscriptionIcon(String iconUrl) {
-    // TODO
-    // iconView.setBackgroundResource(iconUrl);
+    Glide.with(itemView).load(iconUrl).into(iconView);
   }
 
   @Override public void onClick(View view) {
