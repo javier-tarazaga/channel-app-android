@@ -16,6 +16,7 @@
 package com.fernandocejas.android10.sample.data.feeds.datasource;
 
 import com.fernandocejas.android10.sample.data.feeds.entity.CategoryEntity;
+import com.fernandocejas.android10.sample.data.feeds.entity.StreamContentEntity;
 import com.fernandocejas.android10.sample.data.feeds.entity.SubscriptionEntity;
 import com.fernandocejas.android10.sample.domain.feeds.Category;
 import com.fernandocejas.android10.sample.domain.feeds.Subscription;
@@ -43,4 +44,12 @@ public interface FeedDataStore {
    * Get an {@link Observable} which will emit a List of {@link Subscription}.
    */
   Observable<List<SubscriptionEntity>> subscriptions();
+
+  /**
+   * Get an {@link Observable} which will emit a {@link StreamContentEntity}.
+   *
+   * @param streamId A feedId, a categoryId, a tagId or a system category ids can be used as stream ids.
+   * @param unreadOnly Only get unread entries from the stream
+   */
+  Observable<StreamContentEntity> streamWithContent(String streamId, boolean unreadOnly);
 }

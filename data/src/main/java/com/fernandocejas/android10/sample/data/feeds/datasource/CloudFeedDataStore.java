@@ -17,6 +17,7 @@ package com.fernandocejas.android10.sample.data.feeds.datasource;
 
 import com.fernandocejas.android10.sample.data.feeds.cache.CategoryCache;
 import com.fernandocejas.android10.sample.data.feeds.entity.CategoryEntity;
+import com.fernandocejas.android10.sample.data.feeds.entity.StreamContentEntity;
 import com.fernandocejas.android10.sample.data.feeds.entity.SubscriptionEntity;
 import com.fernandocejas.android10.sample.data.net.FeedlyRestApi;
 import com.fernandocejas.android10.sample.data.net.RestApi;
@@ -58,5 +59,9 @@ class CloudFeedDataStore implements FeedDataStore {
 
   @Override public Observable<List<SubscriptionEntity>> subscriptions() {
     return this.restApi.subscriptionEntityList();
+  }
+
+  @Override public Observable<StreamContentEntity> streamWithContent(String streamId, boolean unreadOnly) {
+    return this.restApi.streamContentById(streamId, unreadOnly);
   }
 }
