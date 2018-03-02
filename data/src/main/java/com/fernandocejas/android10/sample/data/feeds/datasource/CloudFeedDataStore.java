@@ -20,7 +20,6 @@ import com.fernandocejas.android10.sample.data.feeds.entity.CategoryEntity;
 import com.fernandocejas.android10.sample.data.feeds.entity.StreamContentEntity;
 import com.fernandocejas.android10.sample.data.feeds.entity.SubscriptionEntity;
 import com.fernandocejas.android10.sample.data.net.FeedlyRestApi;
-import com.fernandocejas.android10.sample.data.net.RestApi;
 import com.fernandocejas.android10.sample.data.user.cache.UserCache;
 import io.reactivex.Observable;
 import io.reactivex.functions.Consumer;
@@ -37,7 +36,7 @@ class CloudFeedDataStore implements FeedDataStore {
   /**
    * Construct a {@link FeedDataStore} based on connections to the api (Cloud).
    *
-   * @param restApi The {@link RestApi} implementation to use.
+   * @param restApi The {@link FeedlyRestApi} implementation to use.
    * @param categoryCache A {@link UserCache} to cache data retrieved from the api.
    */
   CloudFeedDataStore(FeedlyRestApi restApi, CategoryCache categoryCache) {

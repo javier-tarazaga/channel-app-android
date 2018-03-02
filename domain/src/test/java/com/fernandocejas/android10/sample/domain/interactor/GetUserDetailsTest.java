@@ -17,8 +17,9 @@ package com.fernandocejas.android10.sample.domain.interactor;
 
 import com.fernandocejas.android10.sample.domain.executor.PostExecutionThread;
 import com.fernandocejas.android10.sample.domain.executor.ThreadExecutor;
-import com.fernandocejas.android10.sample.domain.interactor.GetUserDetails.Params;
-import com.fernandocejas.android10.sample.domain.repository.UserRepository;
+import com.fernandocejas.android10.sample.domain.user.interactor.GetProfile;
+import com.fernandocejas.android10.sample.domain.user.interactor.GetProfile.Params;
+import com.fernandocejas.android10.sample.domain.user.UserRepository;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -36,7 +37,7 @@ public class GetUserDetailsTest {
 
   private static final int USER_ID = 123;
 
-  private GetUserDetails getUserDetails;
+  private GetProfile getProfile;
 
   @Mock private UserRepository mockUserRepository;
   @Mock private ThreadExecutor mockThreadExecutor;
@@ -46,13 +47,13 @@ public class GetUserDetailsTest {
 
   @Before
   public void setUp() {
-    getUserDetails = new GetUserDetails(mockUserRepository, mockThreadExecutor,
+    getProfile = new GetProfile(mockUserRepository, mockThreadExecutor,
         mockPostExecutionThread);
   }
 
   @Test
   public void testGetUserDetailsUseCaseObservableHappyCase() {
-    getUserDetails.buildUseCaseObservable(Params.forUser(USER_ID));
+    getProfile.buildUseCaseObservable(Params.forUser(USER_ID));
 
     verify(mockUserRepository).user(USER_ID);
     verifyNoMoreInteractions(mockUserRepository);
@@ -63,6 +64,6 @@ public class GetUserDetailsTest {
   @Test
   public void testShouldFailWhenNoOrEmptyParameters() {
     expectedException.expect(NullPointerException.class);
-    getUserDetails.buildUseCaseObservable(null);
+    getProfile.buildUseCaseObservable(null);
   }
 }

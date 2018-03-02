@@ -51,7 +51,7 @@ public class CloudUserDataStoreTest {
 
   @Test
   public void testGetUserEntityDetailsFromApi() {
-    UserEntity fakeUserEntity = new UserEntity();
+    UserEntity fakeUserEntity = new UserEntity(id);
     Observable<UserEntity> fakeObservable = Observable.just(fakeUserEntity);
     given(mockRestApi.userEntityById(FAKE_USER_ID)).willReturn(fakeObservable);
 

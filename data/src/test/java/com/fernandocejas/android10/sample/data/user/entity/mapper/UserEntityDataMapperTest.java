@@ -16,7 +16,7 @@
 package com.fernandocejas.android10.sample.data.user.entity.mapper;
 
 import com.fernandocejas.android10.sample.data.user.entity.UserEntity;
-import com.fernandocejas.android10.sample.domain.User;
+import com.fernandocejas.android10.sample.domain.user.User;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -70,7 +70,7 @@ public class UserEntityDataMapperTest {
   }
 
   private UserEntity createFakeUserEntity() {
-    UserEntity userEntity = new UserEntity();
+    UserEntity userEntity = new UserEntity(id);
     userEntity.setUserId(FAKE_USER_ID);
     userEntity.setFullname(FAKE_FULLNAME);
 

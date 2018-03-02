@@ -1,18 +1,3 @@
-/**
- * Copyright (C) 2015 Fernando Cejas Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.fernandocejas.android10.sample.data.user.cache;
 
 import android.content.Context;
@@ -37,7 +22,7 @@ public class UserCacheImpl implements UserCache {
   private static final String SETTINGS_FILE_NAME = "com.fernandocejas.android10.SETTINGS";
   private static final String SETTINGS_KEY_LAST_CACHE_UPDATE = "last_cache_update";
 
-  private static final String DEFAULT_FILE_NAME = "user_";
+  private static final String DEFAULT_FILE_NAME = "user";
   private static final long EXPIRATION_TIME = 60 * 10 * 1000;
 
   private final Context context;
@@ -65,10 +50,10 @@ public class UserCacheImpl implements UserCache {
     this.threadExecutor = executor;
   }
 
-  @Override public Observable<UserEntity> get(final int userId) {
+  @Override public Observable<UserEntity> get() {
     return Observable.create(new ObservableOnSubscribe<UserEntity>() {
       @Override public void subscribe(ObservableEmitter<UserEntity> emitter) throws Exception {
-        final File userEntityFile = UserCacheImpl.this.buildFile(userId);
+        final File userEntityFile = UserCacheImpl.this.buildFile();
         final String fileContent = UserCacheImpl.this.fileManager.readFileContent(userEntityFile);
         final UserEntity userEntity =
             UserCacheImpl.this.serializer.deserialize(fileContent, UserEntity.class);
@@ -85,8 +70,8 @@ public class UserCacheImpl implements UserCache {
 
   @Override public void put(UserEntity userEntity) {
     if (userEntity != null) {
-      final File userEntityFile = this.buildFile(userEntity.getUserId());
-      if (!isCached(userEntity.getUserId())) {
+      final File userEntityFile = this.buildFile();
+      if (!isCached()) {
         final String jsonString = this.serializer.serialize(userEntity, UserEntity.class);
         this.executeAsynchronously(new CacheWriter(this.fileManager, userEntityFile, jsonString));
         setLastCacheUpdateTimeMillis();
@@ -94,8 +79,8 @@ public class UserCacheImpl implements UserCache {
     }
   }
 
-  @Override public boolean isCached(int userId) {
-    final File userEntityFile = this.buildFile(userId);
+  @Override public boolean isCached() {
+    final File userEntityFile = this.buildFile();
     return this.fileManager.exists(userEntityFile);
   }
 
@@ -119,15 +104,13 @@ public class UserCacheImpl implements UserCache {
   /**
    * Build a file, used to be inserted in the disk cache.
    *
-   * @param userId The id user to build the file.
    * @return A valid file.
    */
-  private File buildFile(int userId) {
+  private File buildFile() {
     final StringBuilder fileNameBuilder = new StringBuilder();
     fileNameBuilder.append(this.cacheDir.getPath());
     fileNameBuilder.append(File.separator);
     fileNameBuilder.append(DEFAULT_FILE_NAME);
-    fileNameBuilder.append(userId);
 
     return new File(fileNameBuilder.toString());
   }

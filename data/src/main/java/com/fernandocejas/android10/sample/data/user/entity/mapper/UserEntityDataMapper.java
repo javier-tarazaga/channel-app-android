@@ -16,10 +16,7 @@
 package com.fernandocejas.android10.sample.data.user.entity.mapper;
 
 import com.fernandocejas.android10.sample.data.user.entity.UserEntity;
-import com.fernandocejas.android10.sample.domain.User;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import com.fernandocejas.android10.sample.domain.user.User;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -42,30 +39,14 @@ public class UserEntityDataMapper {
   public User transform(UserEntity userEntity) {
     User user = null;
     if (userEntity != null) {
-      user = new User(userEntity.getUserId());
-      user.setCoverUrl(userEntity.getCoverUrl());
-      user.setFullName(userEntity.getFullname());
-      user.setDescription(userEntity.getDescription());
-      user.setFollowers(userEntity.getFollowers());
+      user = new User(userEntity.getId());
       user.setEmail(userEntity.getEmail());
+      user.setPicture(user.getPicture());
+      user.setGivenName(user.getGivenName());
+      user.setFamilyName(user.getFamilyName());
+      user.setFullName(user.getFullName());
     }
-    return user;
-  }
 
-  /**
-   * Transform a List of {@link UserEntity} into a Collection of {@link User}.
-   *
-   * @param userEntityCollection Object Collection to be transformed.
-   * @return {@link User} if valid {@link UserEntity} otherwise null.
-   */
-  public List<User> transform(Collection<UserEntity> userEntityCollection) {
-    final List<User> userList = new ArrayList<>(20);
-    for (UserEntity userEntity : userEntityCollection) {
-      final User user = transform(userEntity);
-      if (user != null) {
-        userList.add(user);
-      }
-    }
-    return userList;
+    return user;
   }
 }

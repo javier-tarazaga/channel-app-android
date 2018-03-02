@@ -26,8 +26,8 @@ public class EntryModel implements Serializable {
   private final String id;
 
   private String title;
-  private String summary;
   private String imageUrl;
+  private String summaryInHtml;
   private String contentInHtml;
 
   public EntryModel(String id) {
@@ -46,12 +46,12 @@ public class EntryModel implements Serializable {
     this.title = title;
   }
 
-  @NonNull public String getSummary() {
-    return summary;
+  @NonNull public String getSummaryInHtml() {
+    return summaryInHtml;
   }
 
-  public void setSummary(String summary) {
-    this.summary = summary;
+  public void setSummaryInHtml(String summaryInHtml) {
+    this.summaryInHtml = summaryInHtml;
   }
 
   @NonNull public String getImageUrl() {

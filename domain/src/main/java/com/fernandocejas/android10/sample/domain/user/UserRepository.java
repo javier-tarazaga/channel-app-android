@@ -13,25 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.android10.sample.domain.repository;
+package com.fernandocejas.android10.sample.domain.user;
 
-import com.fernandocejas.android10.sample.domain.User;
 import io.reactivex.Observable;
-import java.util.List;
 
 /**
  * Interface that represents a Repository for getting {@link User} related data.
  */
 public interface UserRepository {
-  /**
-   * Get an {@link Observable} which will emit a List of {@link User}.
-   */
-  Observable<List<User>> users();
 
   /**
    * Get an {@link Observable} which will emit a {@link User}.
-   *
-   * @param userId The user id used to retrieve user data.
    */
-  Observable<User> user(final int userId);
+  Observable<User> user();
 }

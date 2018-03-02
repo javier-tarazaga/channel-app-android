@@ -8,6 +8,7 @@ public class Entry {
 
   private String title;
   private Content content;
+  private Content summary;
   private Visual visual;
   private List<Thumbnail> thumbnailList;
 
@@ -33,6 +34,14 @@ public class Entry {
 
   public void setContent(Content content) {
     this.content = content;
+  }
+
+  @Nullable public Content getSummary() {
+    return summary;
+  }
+
+  public void setSummary(Content summary) {
+    this.summary = summary;
   }
 
   @Nullable public Visual getVisual() {

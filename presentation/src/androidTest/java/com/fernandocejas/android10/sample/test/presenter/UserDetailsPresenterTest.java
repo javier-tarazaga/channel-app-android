@@ -16,8 +16,8 @@
 package com.fernandocejas.android10.sample.test.presenter;
 
 import android.content.Context;
-import com.fernandocejas.android10.sample.domain.interactor.GetUserDetails;
-import com.fernandocejas.android10.sample.domain.interactor.GetUserDetails.Params;
+import com.fernandocejas.android10.sample.domain.user.interactor.GetProfile;
+import com.fernandocejas.android10.sample.domain.user.interactor.GetProfile.Params;
 import com.fernandocejas.android10.sample.presentation.mapper.UserModelDataMapper;
 import com.fernandocejas.android10.sample.presentation.presenter.UserDetailsPresenter;
 import com.fernandocejas.android10.sample.presentation.view.UserDetailsView;
@@ -41,12 +41,12 @@ public class UserDetailsPresenterTest {
 
   @Mock private Context mockContext;
   @Mock private UserDetailsView mockUserDetailsView;
-  @Mock private GetUserDetails mockGetUserDetails;
+  @Mock private GetProfile mockGetProfile;
   @Mock private UserModelDataMapper mockUserModelDataMapper;
 
   @Before
   public void setUp() {
-    userDetailsPresenter = new UserDetailsPresenter(mockGetUserDetails, mockUserModelDataMapper);
+    userDetailsPresenter = new UserDetailsPresenter(mockGetProfile, mockUserModelDataMapper);
     userDetailsPresenter.setView(mockUserDetailsView);
   }
 
@@ -59,6 +59,6 @@ public class UserDetailsPresenterTest {
 
     verify(mockUserDetailsView).hideRetry();
     verify(mockUserDetailsView).showLoading();
-    verify(mockGetUserDetails).execute(any(DisposableObserver.class), any(Params.class));
+    verify(mockGetProfile).execute(any(DisposableObserver.class), any(Params.class));
   }
 }

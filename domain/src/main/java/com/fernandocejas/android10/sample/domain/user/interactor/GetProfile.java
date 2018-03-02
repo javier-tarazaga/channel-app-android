@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,32 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.android10.sample.domain.interactor;
+package com.fernandocejas.android10.sample.domain.user.interactor;
 
-import com.fernandocejas.android10.sample.domain.User;
 import com.fernandocejas.android10.sample.domain.executor.PostExecutionThread;
 import com.fernandocejas.android10.sample.domain.executor.ThreadExecutor;
-import com.fernandocejas.android10.sample.domain.repository.UserRepository;
+import com.fernandocejas.android10.sample.domain.interactor.UseCase;
+import com.fernandocejas.android10.sample.domain.user.User;
+import com.fernandocejas.android10.sample.domain.user.UserRepository;
 import io.reactivex.Observable;
-import java.util.List;
 import javax.inject.Inject;
 
 /**
  * This class is an implementation of {@link UseCase} that represents a use case for
- * retrieving a collection of all {@link User}.
+ * retrieving data related to an specific {@link User}.
  */
-public class GetUserList extends UseCase<List<User>, Void> {
+public class GetProfile extends UseCase<User, Void> {
 
   private final UserRepository userRepository;
 
-  @Inject
-  GetUserList(UserRepository userRepository, ThreadExecutor threadExecutor,
+  @Inject GetProfile(UserRepository userRepository, ThreadExecutor threadExecutor,
       PostExecutionThread postExecutionThread) {
     super(threadExecutor, postExecutionThread);
     this.userRepository = userRepository;
   }
 
-  @Override protected Observable<List<User>> buildUseCaseObservable(Void unused) {
-    return this.userRepository.users();
+  @Override protected Observable<User> buildUseCaseObservable(Void unUsed) {
+    return this.userRepository.user();
   }
 }

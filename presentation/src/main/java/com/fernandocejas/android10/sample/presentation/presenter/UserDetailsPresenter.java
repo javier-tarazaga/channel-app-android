@@ -16,12 +16,11 @@
 package com.fernandocejas.android10.sample.presentation.presenter;
 
 import android.support.annotation.NonNull;
-import com.fernandocejas.android10.sample.domain.User;
+import com.fernandocejas.android10.sample.domain.user.User;
 import com.fernandocejas.android10.sample.domain.exception.DefaultErrorBundle;
 import com.fernandocejas.android10.sample.domain.exception.ErrorBundle;
 import com.fernandocejas.android10.sample.domain.interactor.DefaultObserver;
-import com.fernandocejas.android10.sample.domain.interactor.GetUserDetails;
-import com.fernandocejas.android10.sample.domain.interactor.GetUserDetails.Params;
+import com.fernandocejas.android10.sample.domain.user.interactor.GetProfile;
 import com.fernandocejas.android10.sample.presentation.exception.ErrorMessageFactory;
 import com.fernandocejas.android10.sample.presentation.internal.di.PerActivity;
 import com.fernandocejas.android10.sample.presentation.mapper.UserModelDataMapper;
@@ -38,13 +37,13 @@ public class UserDetailsPresenter implements Presenter {
 
   private UserDetailsView viewDetailsView;
 
-  private final GetUserDetails getUserDetailsUseCase;
+  private final GetProfile getProfileUseCase;
   private final UserModelDataMapper userModelDataMapper;
 
   @Inject
-  public UserDetailsPresenter(GetUserDetails getUserDetailsUseCase,
+  public UserDetailsPresenter(GetProfile getProfileUseCase,
       UserModelDataMapper userModelDataMapper) {
-    this.getUserDetailsUseCase = getUserDetailsUseCase;
+    this.getProfileUseCase = getProfileUseCase;
     this.userModelDataMapper = userModelDataMapper;
   }
 
@@ -57,7 +56,7 @@ public class UserDetailsPresenter implements Presenter {
   @Override public void pause() {}
 
   @Override public void destroy() {
-    this.getUserDetailsUseCase.dispose();
+    this.getProfileUseCase.dispose();
     this.viewDetailsView = null;
   }
 
@@ -72,7 +71,7 @@ public class UserDetailsPresenter implements Presenter {
   }
 
   private void getUserDetails(int userId) {
-    this.getUserDetailsUseCase.execute(new UserDetailsObserver(), Params.forUser(userId));
+    this.getProfileUseCase.execute(new UserDetailsObserver(), null);
   }
 
   private void showViewLoading() {

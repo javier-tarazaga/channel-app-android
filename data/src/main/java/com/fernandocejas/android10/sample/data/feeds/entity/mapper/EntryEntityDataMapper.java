@@ -45,6 +45,7 @@ import javax.inject.Singleton;
       entry = new Entry(entryEntity.getId());
       entry.setTitle(entryEntity.getTitle());
       entry.setContent(transform(entryEntity.getContent()));
+      entry.setSummary(transform(entryEntity.getSummary()));
       entry.setVisual(transform(entryEntity.getVisual()));
       entry.setThumbnailList(transformThumbnailList(entryEntity.getThumbnailEntityList()));
     }

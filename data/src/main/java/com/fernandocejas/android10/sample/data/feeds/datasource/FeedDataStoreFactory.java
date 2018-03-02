@@ -18,7 +18,6 @@ package com.fernandocejas.android10.sample.data.feeds.datasource;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import com.fernandocejas.android10.sample.data.net.FeedlyRestApi;
-import com.fernandocejas.android10.sample.data.user.entity.mapper.UserEntityJsonMapper;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -56,9 +55,6 @@ import javax.inject.Singleton;
    * Create {@link FeedDataStore} to retrieve data from the Cloud.
    */
   public FeedDataStore createCloudDataStore() {
-    final UserEntityJsonMapper userEntityJsonMapper = new UserEntityJsonMapper();
-    // final RestApi restApi = new RestApiImpl(this.context, userEntityJsonMapper);
-
     return new CloudFeedDataStore(this.feedlyRestApi, null);
   }
 }

@@ -15,12 +15,9 @@
  */
 package com.fernandocejas.android10.sample.presentation.mapper;
 
-import com.fernandocejas.android10.sample.domain.User;
+import com.fernandocejas.android10.sample.domain.user.User;
 import com.fernandocejas.android10.sample.presentation.internal.di.PerActivity;
 import com.fernandocejas.android10.sample.presentation.model.UserModel;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import javax.inject.Inject;
 
 /**
@@ -43,34 +40,13 @@ public class UserModelDataMapper {
     if (user == null) {
       throw new IllegalArgumentException("Cannot transform a null value");
     }
-    final UserModel userModel = new UserModel(user.getUserId());
-    userModel.setCoverUrl(user.getCoverUrl());
-    userModel.setFullName(user.getFullName());
+    final UserModel userModel = new UserModel(user.getId());
     userModel.setEmail(user.getEmail());
-    userModel.setDescription(user.getDescription());
-    userModel.setFollowers(user.getFollowers());
+    userModel.setPicture(user.getPicture());
+    userModel.setGivenName(user.getGivenName());
+    userModel.setFamilyName(user.getFamilyName());
+    userModel.setFullName(user.getFullName());
 
     return userModel;
-  }
-
-  /**
-   * Transform a Collection of {@link User} into a Collection of {@link UserModel}.
-   *
-   * @param usersCollection Objects to be transformed.
-   * @return List of {@link UserModel}.
-   */
-  public Collection<UserModel> transform(Collection<User> usersCollection) {
-    Collection<UserModel> userModelsCollection;
-
-    if (usersCollection != null && !usersCollection.isEmpty()) {
-      userModelsCollection = new ArrayList<>();
-      for (User user : usersCollection) {
-        userModelsCollection.add(transform(user));
-      }
-    } else {
-      userModelsCollection = Collections.emptyList();
-    }
-
-    return userModelsCollection;
   }
 }

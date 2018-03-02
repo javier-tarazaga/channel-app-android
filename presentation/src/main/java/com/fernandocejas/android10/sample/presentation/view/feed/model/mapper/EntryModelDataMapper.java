@@ -47,7 +47,7 @@ import javax.inject.Inject;
       entryModel = new EntryModel(entry.getId());
       entryModel.setTitle(entry.getTitle() != null ? entry.getTitle() : "");
       entryModel.setImageUrl(entry.getVisual() != null ? entry.getVisual().getUrl() : "");
-      entryModel.setSummary(entry.getContent() != null ? entry.getContent().getContent() : "");
+      entryModel.setSummaryInHtml(entry.getSummary() != null ? entry.getSummary().getContent() : "");
       entryModel.setContentInHtml(entry.getContent() != null ? entry.getContent().getContent() : "");
     }
     return entryModel;

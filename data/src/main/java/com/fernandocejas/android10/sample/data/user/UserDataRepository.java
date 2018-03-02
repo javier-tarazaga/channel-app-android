@@ -19,8 +19,8 @@ import com.fernandocejas.android10.sample.data.user.datasource.UserDataStore;
 import com.fernandocejas.android10.sample.data.user.datasource.UserDataStoreFactory;
 import com.fernandocejas.android10.sample.data.user.entity.UserEntity;
 import com.fernandocejas.android10.sample.data.user.entity.mapper.UserEntityDataMapper;
-import com.fernandocejas.android10.sample.domain.User;
-import com.fernandocejas.android10.sample.domain.repository.UserRepository;
+import com.fernandocejas.android10.sample.domain.user.User;
+import com.fernandocejas.android10.sample.domain.user.UserRepository;
 import io.reactivex.Observable;
 import io.reactivex.functions.Function;
 import java.util.List;
@@ -46,19 +46,9 @@ import javax.inject.Singleton;
     this.userEntityDataMapper = userEntityDataMapper;
   }
 
-  @Override public Observable<List<User>> users() {
-    //we always get all users from the cloud
-    final UserDataStore userDataStore = this.userDataStoreFactory.createCloudDataStore();
-    return userDataStore.userEntityList().map(new Function<List<UserEntity>, List<User>>() {
-      @Override public List<User> apply(List<UserEntity> userEntities) throws Exception {
-        return UserDataRepository.this.userEntityDataMapper.transform(userEntities);
-      }
-    });
-  }
-
-  @Override public Observable<User> user(int userId) {
-    final UserDataStore userDataStore = this.userDataStoreFactory.create(userId);
-    return userDataStore.userEntityDetails(userId).map(new Function<UserEntity, User>() {
+  @Override public Observable<User> user() {
+    final UserDataStore userDataStore = this.userDataStoreFactory.create();
+    return userDataStore.userEntity().map(new Function<UserEntity, User>() {
       @Override public User apply(UserEntity userEntity) throws Exception {
         return UserDataRepository.this.userEntityDataMapper.transform(userEntity);
       }

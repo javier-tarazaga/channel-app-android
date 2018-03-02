@@ -20,7 +20,7 @@ import com.fernandocejas.android10.sample.data.net.ApiModule;
 import com.fernandocejas.android10.sample.domain.executor.PostExecutionThread;
 import com.fernandocejas.android10.sample.domain.executor.ThreadExecutor;
 import com.fernandocejas.android10.sample.domain.feeds.FeedRepository;
-import com.fernandocejas.android10.sample.domain.repository.UserRepository;
+import com.fernandocejas.android10.sample.domain.user.UserRepository;
 import com.fernandocejas.android10.sample.presentation.internal.di.modules.ApplicationModule;
 import com.fernandocejas.android10.sample.presentation.view.BaseActivity;
 import dagger.Component;

@@ -24,7 +24,7 @@ import com.fernandocejas.android10.sample.data.user.cache.UserCacheImpl;
 import com.fernandocejas.android10.sample.domain.executor.PostExecutionThread;
 import com.fernandocejas.android10.sample.domain.executor.ThreadExecutor;
 import com.fernandocejas.android10.sample.domain.feeds.FeedRepository;
-import com.fernandocejas.android10.sample.domain.repository.UserRepository;
+import com.fernandocejas.android10.sample.domain.user.UserRepository;
 import com.fernandocejas.android10.sample.presentation.AndroidApplication;
 import com.fernandocejas.android10.sample.presentation.UIThread;
 import dagger.Module;

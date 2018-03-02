@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,13 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.android10.sample.presentation.model;
+package com.fernandocejas.android10.sample.domain.user;
 
 /**
- * Class that represents a user in the presentation layer.
+ * Class that represents a User in the domain layer.
  */
-public class UserModel {
-
+public class User {
   private final String id;
 
   private String email;
@@ -28,7 +27,7 @@ public class UserModel {
   private String familyName;
   private String fullName;
 
-  public UserModel(String id) {
+  public User(String id) {
     this.id = id;
   }
 

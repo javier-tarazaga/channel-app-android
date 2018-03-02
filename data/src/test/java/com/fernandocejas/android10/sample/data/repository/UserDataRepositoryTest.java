@@ -20,7 +20,7 @@ import com.fernandocejas.android10.sample.data.user.entity.mapper.UserEntityData
 import com.fernandocejas.android10.sample.data.user.UserDataRepository;
 import com.fernandocejas.android10.sample.data.user.datasource.UserDataStore;
 import com.fernandocejas.android10.sample.data.user.datasource.UserDataStoreFactory;
-import com.fernandocejas.android10.sample.domain.User;
+import com.fernandocejas.android10.sample.domain.user.User;
 import io.reactivex.Observable;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +57,7 @@ public class UserDataRepositoryTest {
   @Test
   public void testGetUsersHappyCase() {
     List<UserEntity> usersList = new ArrayList<>();
-    usersList.add(new UserEntity());
+    usersList.add(new UserEntity(id));
     given(mockUserDataStore.userEntityList()).willReturn(Observable.just(usersList));
 
     userDataRepository.users();
@@ -68,7 +68,7 @@ public class UserDataRepositoryTest {
 
   @Test
   public void testGetUserHappyCase() {
-    UserEntity userEntity = new UserEntity();
+    UserEntity userEntity = new UserEntity(id);
     given(mockUserDataStore.userEntityDetails(FAKE_USER_ID)).willReturn(Observable.just(userEntity));
     userDataRepository.user(FAKE_USER_ID);
 

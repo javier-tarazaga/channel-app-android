@@ -22,12 +22,11 @@ import io.reactivex.Observable;
  * An interface representing a user Cache.
  */
 public interface UserCache {
+
   /**
    * Gets an {@link Observable} which will emit a {@link UserEntity}.
-   *
-   * @param userId The user id to retrieve data.
    */
-  Observable<UserEntity> get(final int userId);
+  Observable<UserEntity> get();
 
   /**
    * Puts and element into the cache.
@@ -39,10 +38,9 @@ public interface UserCache {
   /**
    * Checks if an element (User) exists in the cache.
    *
-   * @param userId The id used to look for inside the cache.
    * @return true if the element is cached, otherwise false.
    */
-  boolean isCached(final int userId);
+  boolean isCached();
 
   /**
    * Checks if the cache is expired.

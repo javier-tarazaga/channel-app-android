@@ -27,6 +27,8 @@ import com.fernandocejas.android10.sample.presentation.view.feed.model.EntryMode
 import com.fernandocejas.android10.sample.presentation.view.widget.HTMLTextView;
 import com.fernandocejas.android10.sample.utils.Preconditions;
 import javax.inject.Inject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 /**
  * Fragment that shows an feed entry details.
@@ -113,7 +115,16 @@ public class FeedEntryDetailsFragment extends BaseFragment implements FeedEntryD
         .into(this.iv_entry);
 
     this.tv_title.setText(entryModel.getTitle());
-    this.tv_html_content.setText(entryModel.getContentInHtml());
+
+    if (!entryModel.getContentInHtml().isEmpty()) {
+      Document parse = Jsoup.parse(entryModel.getContentInHtml());
+    } else {
+      Document parse = Jsoup.parse(entryModel.getSummaryInHtml());
+    }
+
+    //this.tv_html_content.setText(entryModel.getContentInHtml());
+    //this.tv_html_content.setText(entryModel.getSummaryInHtml());
+
   }
 
   private void setupView() {
